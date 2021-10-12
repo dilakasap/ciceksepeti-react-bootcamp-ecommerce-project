@@ -1,0 +1,27 @@
+@import "../../style/variables.scss";
+.header{
+  height: 80px;
+  background-color:$white;
+}
+.navbar{
+  margin:0 220px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  height: 100%;
+}
+.header-logo{
+  
+  img{
+    height: 40px;
+    width: 125px;
+    text-align: center;
+  }
+}
+.user{
+  width: 115px;
+  height: 40px;
+}
+.header-login-button{
+  font-size: 15px;
+}

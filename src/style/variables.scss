@@ -1,0 +1,57 @@
+$login-bg:#FBFBFB;
+$white:#fff;
+$text-color1:#525252;
+$blue:#4b9ce2;
+$input-bg:#f4f4f4;
+$placeholder-color:#99A0A7;
+$button-secondary-bg:#f0f8ff;
+$small-text:#b1b1b1;
+$home-bg:#f2f2f2;
+
+.button{
+  background-color:$blue;
+  color:$white;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  height: 45px;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+
+}
+.button-secondary{
+  background-color: $button-secondary-bg;
+  color:$blue;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  height: 45px;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+
+}
+.input{
+  background-color: $input-bg;
+  height: 45px;
+  padding:12px 15px;
+  border:none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+  &:focus{
+    border: 1px solid $blue;
+    background-color: $button-secondary-bg;
+    border-radius: 8px;
+  }
+  &::placeholder{
+    color: $placeholder-color;
+  }
+}

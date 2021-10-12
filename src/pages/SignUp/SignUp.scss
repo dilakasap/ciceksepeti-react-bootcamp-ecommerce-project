@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import "../../style/variables.scss";
+
+.main-container{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+.sign-up{
+  padding: 70px 90px;
+  background-color: $white;
+  width: 570px;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px #1E36480A;
+
+}
+.right-side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: $login-bg;
+  position: relative;
+}
+.logo{
+  position: absolute;
+  bottom:810px;
+}
+  
+form{
+  display: flex;
+  flex-direction: column;
+ 
+}
+.title{
+  font-size: 32px;
+  text-align: center;
+  font-weight: 700;
+  color:$text-color1;
+  line-height: 43px;
+  
+}
+.note{
+  margin-top:10px;
+  margin-bottom: 35px;
+  text-align: center;
+}
+label{
+  margin-bottom: 5px;
+  margin-top:15px;
+}
+.toLogin{
+  text-align: center;
+}
+.link{
+  text-decoration: none;
+  color:$blue;
+  font-weight: 700;
+}
+.signup-button{
+  margin-top: 30px;
+  margin-bottom: 40px;
+}

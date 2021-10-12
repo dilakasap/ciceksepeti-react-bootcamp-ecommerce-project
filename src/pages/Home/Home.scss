@@ -1,0 +1,12 @@
+@import "../../style/variables.scss";
+.container{
+  background-color: $home-bg;
+  height: 100vh;
+  display: flex;
+}
+.home-container{
+  padding:20px 220px;
+}
+.banner{
+  width: 100%;
+}
