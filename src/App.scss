@@ -1,10 +1,13 @@
 @import "/src/style/variables.scss";
+:root{
+  font-size:10px;
+}
 *{
   margin:0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
-  font-size: 15px;
+  font-size: 1.5rem;
   color: $text-color1;
 
 }

@@ -1,12 +1,12 @@
 @import "../../style/variables.scss";
 .forget-password{
-  font-size: 12px;
+  font-size: 1.2rem;
   color:$small-text;
   text-align: right;
-  margin-top:5px;
+  margin-top:0.5rem;
   
 }
-.login-button{
-  margin-top: 30px;
-  margin-bottom: 20px;
+#login-button{
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }

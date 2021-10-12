@@ -26,7 +26,7 @@ function SignUp() {
             ></input>
             <label>Şifre</label>
             <input className="input" type="password" placeholder="Password" required></input>
-            <button className="button signup-button">Üye Ol</button>
+            <button className="button" id="signup-button">Üye Ol</button>
           </form>
           <div className="toLogin">
           <p>
