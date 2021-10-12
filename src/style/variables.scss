@@ -12,14 +12,14 @@ $home-bg:#f2f2f2;
   background-color:$blue;
   color:$white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   outline: none;
-  height: 45px;
-  font-size: 18px;
+  height: 4.5rem;
+  font-size: 1.8rem;
   text-align: center;
   width: 100%;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 2.4rem;
   cursor: pointer;
 
 }
@@ -27,29 +27,29 @@ $home-bg:#f2f2f2;
   background-color: $button-secondary-bg;
   color:$blue;
   border: none;
-  border-radius: 8px;
+  border-radius: 08rem;
   outline: none;
-  height: 45px;
-  font-size: 18px;
+  height: 4.5rem;
+  font-size: 1.8rem;
   text-align: center;
   width: 100%;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 2.4rem;
   cursor: pointer;
 
 }
 .input{
   background-color: $input-bg;
-  height: 45px;
-  padding:12px 15px;
+  height: 4.5rem;
+  padding:1.2rem 1.5rem;
   border:none;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   outline: none;
-  font-size: 16px;
+  font-size: 1.6rem;
   &:focus{
-    border: 1px solid $blue;
+    border: 0.1rem solid $blue;
     background-color: $button-secondary-bg;
-    border-radius: 8px;
+    border-radius: 0.8rem;
   }
   &::placeholder{
     color: $placeholder-color;
