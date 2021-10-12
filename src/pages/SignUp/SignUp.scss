@@ -7,11 +7,11 @@
   width: 100vw;
 }
 .sign-up{
-  padding: 70px 90px;
+  padding: 7rem 9rem;
   background-color: $white;
-  width: 570px;
-  border-radius: 8px;
-  box-shadow: 0 3px 12px #1E36480A;
+  width: 57rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.3rem 1.2rem #1E36480A;
 
 }
 .right-side{
@@ -25,7 +25,7 @@
 }
 .logo{
   position: absolute;
-  bottom:810px;
+  bottom:81rem;
 }
   
 form{
@@ -34,21 +34,21 @@ form{
  
 }
 .title{
-  font-size: 32px;
+  font-size: 3.2rem;
   text-align: center;
   font-weight: 700;
   color:$text-color1;
-  line-height: 43px;
+  line-height: 4.3rem;
   
 }
 .note{
-  margin-top:10px;
-  margin-bottom: 35px;
+  margin-top:1rem;
+  margin-bottom: 3.5rem;
   text-align: center;
 }
 label{
-  margin-bottom: 5px;
-  margin-top:15px;
+  margin-bottom: 0.5rem;
+  margin-top:1.5rem;
 }
 .toLogin{
   text-align: center;
@@ -59,6 +59,6 @@ label{
   font-weight: 700;
 }
 #signup-button{
-  margin-top: 30px;
-  margin-bottom: 40px;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
 }
