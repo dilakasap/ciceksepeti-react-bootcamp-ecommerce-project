@@ -10,7 +10,7 @@ function Header() {
           <img src={logo}/>
         </div>
         <div className="user">
-        <button className="button-secondary header-login-button">
+        <button className="button-secondary" id="header-login-button">
           <img src={user}/> Giriş Yap
         </button>
         </div>

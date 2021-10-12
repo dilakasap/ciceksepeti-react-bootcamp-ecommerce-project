@@ -27,7 +27,7 @@ function Login() {
             <label>Şifre</label>
             <input className="input" type="password" placeholder="Password" required></input>
             <p className="forget-password">Şifremi Unuttum</p>
-            <button className="button login-button">Üye Ol</button>
+            <button className="button" id="login-button">Üye Ol</button>
           </form>
           <div className="toLogin">
           <p>
