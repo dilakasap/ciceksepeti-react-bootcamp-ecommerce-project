@@ -1,12 +1,12 @@
 @import "../../style/variables.scss";
-.container{
+.container {
   background-color: $home-bg;
-  height: 100vh;
+  height: 100%;
   display: flex;
 }
-.home-container{
-  padding:2rem 22rem;
+.home-container {
+  padding: 2rem 22rem;
 }
-.banner{
+.banner {
   width: 100%;
 }
