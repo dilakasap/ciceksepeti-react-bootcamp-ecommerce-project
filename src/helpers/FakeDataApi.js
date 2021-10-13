@@ -1,4 +1,4 @@
-export const getCategories = () => {
+export const getCategoriesApi = () => {
   return [
     {
       title: "sweatshirt",
@@ -39,7 +39,7 @@ export const getCategories = () => {
   ];
 };
 
-export const getProducts = () => {
+export const getProductsApi = () => {
   return [
     {
       id: "3LA82AzBz9NGeEq4LZf7",
