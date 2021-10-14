@@ -1,12 +1,46 @@
 @import "../../style/variables.scss";
-.forget-password{
+.forget-password {
   font-size: 1.2rem;
-  color:$small-text;
+  color: $small-text;
   text-align: right;
-  margin-top:0.5rem;
-  
+  margin-top: 0.5rem;
 }
-#login-button{
+#login-button {
   margin-top: 3rem;
   margin-bottom: 2rem;
+}
+@media screen and (max-width: 1335px) {
+  #login-logo {
+    width: 20rem;
+  }
+  #login-image {
+    display: none;
+  }
+}
+@media screen and (max-width:580px) {
+  :root {
+    font-size: 10px;
+  }
+  .logo {
+    margin-bottom: 0;
+  }
+  #login-logo {
+    width: 15rem;
+    height: 5rem;
+    margin-bottom: 2.4rem;
+  }
+  .sign-up {
+    width: 35.5rem;
+    padding: 2rem;
+  }
+  .toLogin {
+    padding-bottom: 2rem;
+  }
+  .right-side {
+    background-color: $home-bg;
+  }
+  #login-button {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
 }
