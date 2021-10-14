@@ -2,6 +2,7 @@
 .container {
   background-color: $home-bg;
   height: 100%;
+  width: 100%;
   display: flex;
 }
 .home-container {
@@ -9,4 +10,27 @@
 }
 .banner {
   width: 100%;
+}
+@media screen and (max-width: 1535px) {
+  .home-container {
+    padding: 2rem 16rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .home-container {
+    padding: 2rem 10rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .home-container {
+    padding: 2rem 4rem;
+  }
+}
+@media screen and (max-width: 375px) {
+  .home-container {
+    padding: 1rem 1rem;
+  }
+  .banner {
+    border-radius: 0.8rem;
+  }
 }

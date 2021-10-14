@@ -24,8 +24,7 @@
   position: relative;
 }
 .logo{
-  position: absolute;
-  bottom:81rem;
+  margin-bottom: 5rem;
 }
   
 form{
@@ -61,4 +60,35 @@ label{
 #signup-button{
   margin-top: 3rem;
   margin-bottom: 4rem;
+}
+@media screen and (max-width:1335px){
+  #signup-logo{
+    width: 20rem;
+   }
+   #signup-image{
+    display: none;
+  }
+}
+@media screen and (max-width:580px){
+  :root{
+    font-size: 10px;
+  }
+  .logo{
+    margin-bottom:0;
+  }
+  #signup-logo{
+    width: 15rem;
+    height: 5rem;
+    margin-bottom:2.4rem;
+  }
+  .sign-up{
+    width: 35.5rem;
+    padding: 2rem;
+  }
+  .toLogin{
+    padding-bottom:2rem;
+  }
+  .right-side{
+    background-color: $home-bg;
+  }
 }

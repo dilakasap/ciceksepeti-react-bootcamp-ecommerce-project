@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 3rem;
-  border-bottom: 0.1rem solid $small-text;
+  border-bottom: 0.1rem solid $categories-border;
   border-collapse: collapse;
 }
 .categories-item {
@@ -20,5 +20,33 @@
   &:focus {
     color: $blue;
     border-bottom: 0.1rem solid $blue;
+  }
+}
+@media screen and (max-width: 1535px) {
+  .categories-item {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .categories-item {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .categories-item {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 375px) {
+  .categories {
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 35.5rem;
+    margin-top: 2rem;
+  }
+  .categories-item {
+    margin-right: 2.7rem;
+    padding-bottom: 0.7rem;
   }
 }

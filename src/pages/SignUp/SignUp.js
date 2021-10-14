@@ -9,10 +9,10 @@ function SignUp() {
   return (
     <>
     <div className="main-container">
-      <img src={image} />
+      <img id="signup-image" src={image} />
       <div className="right-side">
         <div className="logo">
-          <img src={logo} />
+          <img src={logo} id="signup-logo" />
         </div>
         <div className="sign-up">
           <p className="title">Üye Ol</p>
