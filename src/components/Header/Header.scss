@@ -11,18 +11,17 @@
   height: 100%;
 }
 .header-logo {
+  height:4rem;
   img {
     height: 4rem;
     width: 12.5rem;
     text-align: center;
   }
 }
-.user {
-  width: 11.5rem;
-  height: 4rem;
-}
 #header-login-button {
   font-size: 1.5rem;
+  width: 11.5rem;
+  height: 4rem;
 }
 
 @media screen and (max-width: 1535px) {
@@ -41,7 +40,17 @@
   }
 }
 @media screen and (max-width: 375px) {
+  .header{
+    height: 6rem;
+  }
   .navbar {
     margin: 0 1rem;
+  }
+  .header-logo{
+    height:3.2rem;
+    img{
+      width: 10rem;
+      height: 3.2rem;
+    }
   }
 }
