@@ -4,14 +4,14 @@ import {
   GET_CATEGORIES_ERROR,
 } from "../constants/categoriesTypes";
 import axios from "axios";
-import { getCategoriesApi } from "../../helpers/FakeDataApi";
+
 
 export const getCategories = () =>  (dispatch) => {
   dispatch({ type: GET_CATEGORIES_PENDING });
   axios
-    .get("#")
+    .get("http://bootcampapi.techcs.io/api/fe/v1/detail/category/all")
     .then((response) => {
-      dispatch({ type: GET_CATEGORIES_SUCCESS, payload: getCategoriesApi() });
+      dispatch({ type: GET_CATEGORIES_SUCCESS, payload: response.data });
     })
     .catch((error) => dispatch({ type: GET_CATEGORIES_ERROR, payload: error }));
 };

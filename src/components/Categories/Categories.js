@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCategories } from "../../redux/actions/categories";
 import "./Categories.scss";
+import {REQUEST_STATUS} from "../../helpers/Constants";
 
 function Categories() {
   const dispatchCategories = useDispatch();
@@ -10,9 +11,10 @@ function Categories() {
     dispatchCategories(getCategories());
   }, []);
   const categories = useSelector((state) => state.categories);
-  console.log(categories);
   return (
-    <div className="categories">
+    <>
+      {categories.status===REQUEST_STATUS.SUCCESS && (
+        <div className="categories">
       <div tabIndex="1" className="categories-item">
         Hepsi
       </div>
@@ -25,6 +27,8 @@ function Categories() {
         Diğer
       </div>
     </div>
+      )}
+     </> 
   );
 }
 
