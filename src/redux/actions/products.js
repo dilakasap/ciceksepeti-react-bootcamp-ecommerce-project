@@ -4,9 +4,8 @@ import {
   GET_PRODUCTS_ERROR,
 } from "../constants/products";
 import axios from "axios";
-import { getProductsApi } from "../../helpers/FakeDataApi";
 
-export const getProducts = () =>  (dispatch) => {
+export const getProducts = () => (dispatch) => {
   dispatch({ type: GET_PRODUCTS_PENDING });
   axios
     .get("http://bootcampapi.techcs.io/api/fe/v1/product/all")

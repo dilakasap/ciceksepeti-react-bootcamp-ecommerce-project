@@ -1,0 +1,8 @@
+@import "../../style/variables.scss";
+.account-container {
+  background-color: $home-bg;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

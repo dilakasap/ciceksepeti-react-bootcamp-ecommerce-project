@@ -853,3 +853,9 @@ export const getProductsApi = () => {
     },
   ];
 };
+
+export const getMail=()=>{
+ return[{
+   mail:"dila@gmail.com",
+ },]
+}

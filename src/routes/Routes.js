@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Account from "../pages/Account/Account";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
@@ -21,6 +22,9 @@ function Routes() {
           </Route>
           <Route exact path="/products/:id">
             <ProductDetails/>
+          </Route>
+          <Route path="/account">
+            <Account/>
           </Route>
         </Switch>
       </Router>
