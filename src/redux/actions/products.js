@@ -8,7 +8,7 @@ import axios from "axios";
 export const getProducts = () => (dispatch) => {
   dispatch({ type: GET_PRODUCTS_PENDING });
   axios
-    .get("http://bootcampapi.techcs.io/api/fe/v1/product/all")
+    .get("https://bootcampapi.techcs.io/api/fe/v1/product/all")
     .then((response) => {
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: response.data });
     })

@@ -5,6 +5,9 @@ import { productDetailsReducer } from "../reducers/productDetails";
 import { emailReducer } from "../reducers/email";
 import { givenOffersReducer } from "../reducers/givenOffers";
 import { receivedOffersReducer } from "../reducers/receivedOffers";
+import { brandsReducer } from "../reducers/brands";
+import { colorsReducer } from "../reducers/colors";
+import { statusReducer } from "../reducers/status";
 import thunk from "redux-thunk";
 
 const reducers = combineReducers({
@@ -14,5 +17,8 @@ const reducers = combineReducers({
   email: emailReducer,
   givenOffers: givenOffersReducer,
   receivedOffers: receivedOffersReducer,
+  brands: brandsReducer,
+  colors: colorsReducer,
+  status: statusReducer,
 });
 export const store = createStore(reducers, applyMiddleware(thunk));

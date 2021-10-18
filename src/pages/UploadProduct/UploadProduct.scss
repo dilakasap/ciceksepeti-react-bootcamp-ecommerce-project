@@ -1,0 +1,248 @@
+@import "../../style/variables.scss";
+.upload-product {
+  background-color: $home-bg;
+  height: 100%;
+  min-height:100vh;
+}
+.upload-product-container {
+  background-color: $white;
+  margin: 2rem 22rem;
+  padding: 3rem;
+  border-radius: 0.8rem;
+}
+.upload-product-wrapper {
+}
+#product-detail-p {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+.product-detail-form {
+  display: flex;
+}
+.left-side-form {
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+  padding-right: 4.75rem;
+  border-right: 0.1rem solid $home-bg;
+
+  label {
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.select-box-first-line {
+  display: flex;
+  label {
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.select-box-first-line-category {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 2.4rem;
+}
+.select-box-first-line-brand {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#description-input {
+  height: 9.2rem;
+}
+.select-box-second-line {
+  display: flex;
+  label {
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.select-box-second-line-color {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 2.4rem;
+}
+.select-box-second-line-status {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.right-side-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 5;
+  padding-left: 4.75rem;
+}
+
+select {
+  height: 4.5rem;
+  color: $placeholder-color;
+}
+option{
+  background-color:$white;
+  height: 15rem;
+}
+#product-detail-form-price-input {
+  position: relative;
+  width: 23.6rem;
+  display: flex;
+  flex-direction: column;
+}
+#tl {
+  position: absolute;
+  left: 210px;
+  top: 62px;
+  color: $placeholder-color;
+}
+.offer-option-wrapper {
+  display: flex;
+  align-items: center;
+}
+#offer-option {
+  color: $small-text;
+  position: relative;
+  display: inline-block;
+}
+#switch {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+#label-offer {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 4.4rem;
+  height: 2.4rem;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+}
+#switch:checked + #label-offer {
+  background: #bada55;
+}
+#switch:checked + #label-offer:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+#label-offer:active:after {
+  width: 4rem;
+}
+
+#product-image-p {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+.image-area {
+  border: 0.1rem dashed $small-text;
+  border-radius: 1rem;
+  padding: 2rem 18rem;
+  text-align: center;
+  width: 100%;
+  p {
+    font-size: 1.4rem;
+    color: $text-color1;
+  }
+}
+#choose-image-button {
+  border-radius: 1.5rem;
+  color: $small-text;
+  padding: 0.5rem 2rem;
+  border: none;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+#info-p {
+  font-weight: 700;
+}
+.submit-button {
+  width: 100%;
+  height: 4.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+#upload-submit-button {
+  width: 31.5rem;
+}
+
+@media screen and (max-width: 1535px) {
+  .upload-product-container {
+    margin: 2rem 16rem;
+  }
+  .image-area{
+    padding:2rem 10rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .upload-product-container {
+    margin: 2rem 10rem;
+  }
+  .image-area{
+    padding:2rem 4rem;
+  }
+  .right-side-form{
+    padding-left:2rem;
+  }
+  .left-side-form{
+    padding-right:2rem;
+  }
+  #upload-submit-button {
+    width: 21.5rem;
+  }
+
+}
+@media screen and (max-width: 900px) {
+  .upload-product-container {
+    margin: 2rem 4rem;
+    padding:1rem;
+  }
+  .product-detail-form{
+    flex-direction: column;
+  }
+  .select-box-first-line{
+    flex-direction: column;
+  }
+  .select-box-second-line{
+    flex-direction: column;
+  }
+  .left-side-form{
+    border:none;
+    padding-right: 0;
+  }
+  .right-side-form{
+    padding-left:0;
+  }
+  #upload-submit-button {
+    width:100%;
+  }
+  .image-area{
+    margin-bottom: 2.5rem;
+  }
+  .offer-option-wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 375px) {
+  .upload-product-container {
+    margin: 1.6rem 1rem;
+  }
+}

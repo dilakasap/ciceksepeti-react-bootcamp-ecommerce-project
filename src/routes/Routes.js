@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import SignUp from "../pages/SignUp/SignUp";
+import UploadProduct from "../pages/UploadProduct/UploadProduct";
 
 function Routes() {
   return (
@@ -25,6 +26,9 @@ function Routes() {
           </Route>
           <Route path="/account">
             <Account/>
+          </Route>
+          <Route path="/upload-product">
+            <UploadProduct/>
           </Route>
         </Switch>
       </Router>
