@@ -8,7 +8,7 @@ import { getProductsApi } from "../../helpers/FakeDataApi";
 export const getGivenOffers = () => (dispatch) => {
   dispatch({ type: GET_GIVEN_OFFERS_PENDING });
   axios
-    .get("http://bootcampapi.techcs.io/api/fe/v1/detail/category/all")
+    .get("https://bootcampapi.techcs.io/api/fe/v1/detail/category/all")
     .then((response) => {
       dispatch({ type: GET_GIVEN_OFFERS_SUCCESS, payload: 
         [

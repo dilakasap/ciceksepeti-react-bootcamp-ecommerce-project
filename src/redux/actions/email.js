@@ -8,7 +8,7 @@ import { getMail } from "../../helpers/FakeDataApi";
 export const getEmail = () => (dispatch) => {
   dispatch({ type: GET_EMAIL_PENDING });
   axios
-    .get("http://bootcampapi.techcs.io/api/fe/v1/detail/category/all")
+    .get("https://bootcampapi.techcs.io/api/fe/v1/detail/category/all")
     .then((response) => {
       dispatch({ type: GET_EMAIL_SUCCESS, payload:"dilakasap@gmail.com"});
     })
