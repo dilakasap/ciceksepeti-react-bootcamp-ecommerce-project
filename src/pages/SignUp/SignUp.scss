@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import "../../style/variables.scss";
 
-.main-container{
+.main-container {
   display: flex;
   height: 100vh;
   width: 100vw;
 }
-.sign-up{
+.sign-up {
   padding: 7rem 9rem;
   background-color: $white;
   width: 57rem;
   border-radius: 0.8rem;
-  box-shadow: 0 0.3rem 1.2rem #1E36480A;
-
+  box-shadow: 0 0.3rem 1.2rem #1e36480a;
 }
-.right-side{
+.right-side {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,72 +22,80 @@
   background-color: $login-bg;
   position: relative;
 }
-.logo{
+.logo {
   margin-bottom: 5rem;
 }
-  
-form{
+
+form {
   display: flex;
   flex-direction: column;
- 
 }
-.title{
+.title {
   font-size: 3.2rem;
   text-align: center;
   font-weight: 700;
-  color:$text-color1;
+  color: $text-color1;
   line-height: 4.3rem;
-  
 }
-.note{
-  margin-top:1rem;
+.note {
+  margin-top: 1rem;
   margin-bottom: 3.5rem;
   text-align: center;
 }
-label{
+label {
   margin-bottom: 0.5rem;
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
-.toLogin{
+.toLogin {
   text-align: center;
 }
-.link{
+.link {
   text-decoration: none;
-  color:$blue;
+  color: $blue;
   font-weight: 700;
 }
-#signup-button{
+#signup-button {
   margin-top: 3rem;
   margin-bottom: 4rem;
 }
-@media screen and (max-width:1335px){
-  #signup-logo{
+#signup-email-error {
+  color: $red;
+  background-color: $light-red;
+  border-color: $red;
+}
+#signup-password-error {
+  color: $red;
+  background-color: $light-red;
+  border-color: $red;
+}
+@media screen and (max-width: 1335px) {
+  #signup-logo {
     width: 20rem;
-   }
-   #signup-image{
+  }
+  #signup-image {
     display: none;
   }
 }
-@media screen and (max-width:580px){
-  :root{
+@media screen and (max-width: 580px) {
+  :root {
     font-size: 10px;
   }
-  .logo{
-    margin-bottom:0;
+  .logo {
+    margin-bottom: 0;
   }
-  #signup-logo{
+  #signup-logo {
     width: 15rem;
     height: 5rem;
-    margin-bottom:2.4rem;
+    margin-bottom: 2.4rem;
   }
-  .sign-up{
+  .sign-up {
     width: 35.5rem;
     padding: 2rem;
   }
-  .toLogin{
-    padding-bottom:2rem;
+  .toLogin {
+    padding-bottom: 2rem;
   }
-  .right-side{
+  .right-side {
     background-color: $home-bg;
   }
 }
