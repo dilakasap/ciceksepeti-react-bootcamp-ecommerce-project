@@ -5,10 +5,16 @@ import { getCategories } from "../../redux/actions/categories";
 import { getBrands } from "../../redux/actions/brands";
 import { getColors } from "../../redux/actions/colors";
 import { getStatus } from "../../redux/actions/status";
+import { useForm } from "react-hook-form";
 import cloud from "../../images/cloud.svg";
 import "./UploadProduct.scss";
 
 function UploadProduct() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -26,7 +32,7 @@ function UploadProduct() {
       <div className="upload-product-container">
         <div className="upload-product-wrapper">
           <p id="product-detail-p">Ürün Detayları</p>
-          <form>
+          <form onSubmit={handleSubmit()}>
             <div className="product-detail-form">
               <div className="left-side-form">
                 <label htmlFor="urunadı">Ürün Adı</label>
@@ -34,18 +40,40 @@ function UploadProduct() {
                   type="text"
                   className="input"
                   placeholder="Örnek: Iphone 12 Pro Max"
+                  id={errors.productName && "upload-product-name-error"}
+                  {...register("productName", {
+                    required: true,
+                    maxLength: 100,
+                  })}
                 />
                 <label htmlFor="acıklama">Açıklama</label>
                 <input
-                  id="description-input"
                   type="text"
-                  className="input"
+                  className="input description-input"
                   placeholder="Ürün açıklaması girin"
+                  id={
+                    errors.productDescription &&
+                    "upload-product-description-error"
+                  }
+                  {...register("productDescription", {
+                    required: true,
+                    maxLength: 500,
+                  })}
                 />
                 <div className="select-box-first-line">
                   <div className="select-box-first-line-category">
                     <label htmlFor="kategori">Kategori</label>
-                    <select className="input" name="kategori">
+                    <select
+                      className={`input ${
+                        errors.productCategory &&
+                        "upload-product-category-error"
+                      }`}
+                      name="kategori"
+                      //  className={errors.productCategory && "upload-product-category-error"}
+                      {...register("productCategory", {
+                        required: true,
+                      })}
+                    >
                       <option value="" disabled selected hidden>
                         Kategori Seç
                       </option>
@@ -59,7 +87,15 @@ function UploadProduct() {
                   </div>
                   <div className="select-box-first-line-brand">
                     <label htmlFor="marka">Marka</label>
-                    <select className="input" name="marka">
+                    <select
+                      className={`input ${
+                        errors.productBrand && "upload-product-brand-error"
+                      }`}
+                      name="marka"
+                      {...register("productBrand", {
+                        required: true,
+                      })}
+                    >
                       <option value="" disabled selected hidden>
                         Marka Seç
                       </option>
@@ -75,7 +111,15 @@ function UploadProduct() {
                 <div className="select-box-second-line">
                   <div className="select-box-second-line-color">
                     <label htmlFor="renk">Renk</label>
-                    <select className="input" name="renk">
+                    <select
+                      className={`input ${
+                        errors.productColor && "upload-product-color-error"
+                      }`}
+                      name="renk"
+                      {...register("productColor", {
+                        required: "select one option",
+                      })}
+                    >
                       <option value="" disabled selected hidden>
                         Renk Seç
                       </option>
@@ -90,9 +134,13 @@ function UploadProduct() {
                   <div className="select-box-second-line-status">
                     <label htmlFor="kullanımdurumu">Kullanım Durumu</label>
                     <select
-                      id="status-select"
-                      className="input"
+                      className={`input ${
+                        errors.productStatus && "upload-product-status-error"
+                      }`}
                       name="kullanımdurumu"
+                      {...register("productStatus", {
+                        required: "select one option",
+                      })}
                     >
                       <option value="" disabled selected hidden>
                         Kullanım Durumu
@@ -109,6 +157,9 @@ function UploadProduct() {
                 <div id="product-detail-form-price-input">
                   <label htmlFor="fiyat">Fiyat</label>
                   <input
+                    {...register("productPrice", {
+                      required: "true",
+                    })}
                     className="input"
                     type="text"
                     placeholder="Bir fiyat girin"

@@ -9,6 +9,16 @@
   margin-top: 3rem;
   margin-bottom: 2rem;
 }
+#login-email-error {
+  color: $red;
+  background-color: $light-red;
+  border-color: $red;
+}
+#login-password-error {
+  color: $red;
+  background-color: $light-red;
+  border-color: $red;
+}
 @media screen and (max-width: 1335px) {
   #login-logo {
     width: 20rem;
@@ -17,7 +27,7 @@
     display: none;
   }
 }
-@media screen and (max-width:580px) {
+@media screen and (max-width: 580px) {
   :root {
     font-size: 10px;
   }
