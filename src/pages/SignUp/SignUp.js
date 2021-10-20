@@ -4,17 +4,40 @@ import image from "../../images/signUp.png";
 import logo from "../../images/ikinciel.svg";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Modal from "react-modal";
+import { useDispatch } from "react-redux";
+import { postSignup } from "../../redux/actions/signup";
+import { useSelector } from "react-redux";
+import { REQUEST_STATUS } from "../../helpers/Constants";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
+  const dispatch = useDispatch();
   const [hasError, setHasError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signup = useSelector((state) => state.signup);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (signup.status === REQUEST_STATUS.SUCCESS) {
+      localStorage.setItem("AccessToken", signup.data.access_token);
+      history.push("/");
+    } else if (signup.status === REQUEST_STATUS.ERROR) {
+      alert(signup.error.message);
+    }
+  }, [signup]);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = () => {};
+  
+  const onSubmit = () => {
+    if (errors.email || errors.password) {
+      return;
+    }
+    dispatch(postSignup(email, password));
+  };
   useEffect(() => {
     if (errors.email || errors.password) {
       setHasError(true);
@@ -43,6 +66,9 @@ function SignUp() {
                   required: true,
                   pattern: /\S+@\S+\.\S+/,
                 })}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               ></input>
               <label>Şifre</label>
               <input
@@ -55,6 +81,9 @@ function SignUp() {
                   minLength: 8,
                   maxLength: 20,
                 })}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               ></input>
               {/* <Modal isOpen={hasError}>
                  {errors.email && errors.email.type === "required" && (

@@ -8,7 +8,12 @@ import { receivedOffersReducer } from "../reducers/receivedOffers";
 import { brandsReducer } from "../reducers/brands";
 import { colorsReducer } from "../reducers/colors";
 import { statusReducer } from "../reducers/status";
+import { signupReducer } from "../reducers/signup";
+import { loginReducer } from "../reducers/login";
 import thunk from "redux-thunk";
+import { purchaseReducer } from "../reducers/purchase";
+import { rejectOfferReducer } from "../reducers/rejectOffer";
+import { acceptOfferReducer } from "../reducers/acceptOffer";
 
 const reducers = combineReducers({
   categories: categoriesReducer,
@@ -20,5 +25,10 @@ const reducers = combineReducers({
   brands: brandsReducer,
   colors: colorsReducer,
   status: statusReducer,
+  signup: signupReducer,
+  login: loginReducer,
+  purchase: purchaseReducer,
+  rejectOffer: rejectOfferReducer,
+  acceptOffer: acceptOfferReducer,
 });
 export const store = createStore(reducers, applyMiddleware(thunk));

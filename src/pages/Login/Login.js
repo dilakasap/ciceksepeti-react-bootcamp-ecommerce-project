@@ -5,16 +5,42 @@ import { Link } from "react-router-dom";
 import "../SignUp/SignUp.scss";
 import "./Login.scss";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { postLogin } from "../../redux/actions/login";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { REQUEST_STATUS } from "../../helpers/Constants";
 
 function Login() {
   const [hasError, setHasError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const login = useSelector((state) => state.login);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (login.status === REQUEST_STATUS.SUCCESS) {
+      localStorage.setItem("AccessToken",login.data.access_token);
+      history.push("/");
+    } else if (login.status === REQUEST_STATUS.ERROR) {
+      alert(login.error.message);
+    }
+  }, [login]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    if (errors.email || errors.password) {
+      return;
+    }
+    dispatch(postLogin(email, password));
+    localStorage.setItem("email",email)
+  };
   useEffect(() => {
     if (errors.email || errors.password) {
       setHasError(true);
@@ -36,12 +62,15 @@ function Login() {
               <input
                 className="input"
                 placeholder="Email@example.com"
-                type="email"
+                type="text"
                 id={errors.email && "login-email-error"}
                 {...register("email", {
                   required: true,
                   pattern: /\S+@\S+\.\S+/,
                 })}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               ></input>
               <label>Şifre</label>
               <input
@@ -54,10 +83,13 @@ function Login() {
                   minLength: 8,
                   maxLength: 20,
                 })}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               ></input>
               <p className="forget-password">Şifremi Unuttum</p>
               <button className="button" id="login-button">
-                Üye Ol
+                Giriş Yap
               </button>
             </form>
             <div className="toLogin">
