@@ -7,8 +7,12 @@ import { REQUEST_STATUS } from "../../helpers/Constants";
 import Modal from "react-modal";
 import logox from "../../images/logox.svg";
 import "./ProductDetails.scss";
+import {putPurchase} from "../../redux/actions/purchase";
+import {getGivenOffers} from "../../redux/actions/givenOffers";
 function ProductDetails() {
   const [isOpenBuy, setIsOpenBuy] = useState(false);
+  
+  
   const openProductDetailModal = () => {
     setIsOpenBuy(true);
   };
@@ -23,12 +27,22 @@ function ProductDetails() {
     setIsOpenOffer(false);
   };
   const productDetails = useSelector((state) => state.details);
+  console.log(productDetails);
   const dispatch = useDispatch();
   const { id } = useParams();
+  
   useEffect(() => {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);
-  console.log(productDetails);
+  
+  const purchaseProduct=(()=>{
+    dispatch(putPurchase(id));
+  })
+  useEffect(() => {
+    dispatch(getGivenOffers());
+  }, [dispatch]);
+  const givenOffers = useSelector((state) => state.givenOffers);
+  console.log(givenOffers);
   return (
     <div>
       <Header />
@@ -61,7 +75,12 @@ function ProductDetails() {
                 {productDetails.data.price} TL
               </div>
               <div className="product-details-buttons">
-                <button
+                {
+                  productDetails.data.isSold ? 
+                  <div>Satılmış</div>
+                  :
+                  <>
+                  <button
                   onClick={openProductDetailModal}
                   id="buy-button"
                   className="button"
@@ -81,75 +100,85 @@ function ProductDetails() {
                     >
                       Vazgeç
                     </button>
-                    <button className="button">Satın Al</button>
+                    <button onClick={purchaseProduct} className="button">Satın Al</button>
                   </div>
                 </Modal>
-
-                <button
-                  onClick={openOfferModal}
-                  id="offer-button"
-                  className="button-secondary"
-                >
-                  Teklif Ver
-                </button>
-                <Modal isOpen={isOpenOffer} className="offer-modal">
-                  <div className="offer-modal-title-wrapper">
-                    <p className="offer-modal-title">Teklif Ver</p>
-                    <img
-                      alt="closebutton"
-                      onClick={closeOfferModal}
-                      src={logox}
-                    />
-                  </div>
-                  <div className="offer-modal-product-details">
-                    <div className="offer-modal-upside">
-                      <div className="offer-modal-image">
-                        <img
-                          alt={productDetails.data.title}
-                          src={productDetails.data.imageUrl}
-                        ></img>
-                      </div>
-                      <div className="offer-modal-product">
-                        <div className="offer-modal-product-title">
-                          {productDetails.data.title}
-                        </div>
-                        <div className="offer-modal-product-price">
-                          {productDetails.data.price} TL
-                        </div>
-                      </div>
-                    </div>
-                    <div className="offer-modal-options">
-                      <div className="offer-modal-radio">
-                        <input type="radio" name="radio-group" />
-                        <label htmlFor="">%20'si Kadar Teklif Ver</label>
-                        {/* <div className="highlight"></div> */}
-                      </div>
-                      <div className="offer-modal-radio">
-                        <input type="radio" name="radio-group" />
-                        <label htmlFor="">%20'si Kadar Teklif Ver</label>
-                        {/* <div className="highlight"></div> */}
-                      </div>
-                      <div className="offer-modal-radio">
-                        <input type="radio" name="radio-group" />
-                        <label htmlFor="">%20'si Kadar Teklif Ver</label>
-                        {/* <div className="highlight"></div> */}
-                      </div>
-                    </div>
-                    <div className="offer-modal-price">
-                      <input
-                        className="input"
-                        type="text"
-                        placeholder="Teklif Belirle"
+                  {
+                    productDetails.data.isOfferable && 
+                    
+                    
+                    <>
+                    <button
+                    onClick={openOfferModal}
+                    id="offer-button"
+                    className="button-secondary"
+                  >
+                    Teklif Ver
+                  </button>
+                  <Modal isOpen={isOpenOffer} className="offer-modal">
+                    <div className="offer-modal-title-wrapper">
+                      <p className="offer-modal-title">Teklif Ver</p>
+                      <img
+                        alt="closebutton"
+                        onClick={closeOfferModal}
+                        src={logox}
                       />
-                      <span id="tl-text">TL</span>
                     </div>
-                    <div className="offer-modal-button">
-                      <button id="offer-modal-accept-button" className="button">
-                        Onayla
-                      </button>
+                    <div className="offer-modal-product-details">
+                      <div className="offer-modal-upside">
+                        <div className="offer-modal-image">
+                          <img
+                            alt={productDetails.data.title}
+                            src={productDetails.data.imageUrl}
+                          ></img>
+                        </div>
+                        <div className="offer-modal-product">
+                          <div className="offer-modal-product-title">
+                            {productDetails.data.title}
+                          </div>
+                          <div className="offer-modal-product-price">
+                            {productDetails.data.price} TL
+                          </div>
+                        </div>
+                      </div>
+                      <div className="offer-modal-options">
+                        <div className="offer-modal-radio">
+                          <input type="radio" name="radio-group" />
+                          <label htmlFor="">%20'si Kadar Teklif Ver</label>
+                          {/* <div className="highlight"></div> */}
+                        </div>
+                        <div className="offer-modal-radio">
+                          <input type="radio" name="radio-group" />
+                          <label htmlFor="">%20'si Kadar Teklif Ver</label>
+                          {/* <div className="highlight"></div> */}
+                        </div>
+                        <div className="offer-modal-radio">
+                          <input type="radio" name="radio-group" />
+                          <label htmlFor="">%20'si Kadar Teklif Ver</label>
+                          {/* <div className="highlight"></div> */}
+                        </div>
+                      </div>
+                      <div className="offer-modal-price">
+                        <input
+                          className="input"
+                          type="text"
+                          placeholder="Teklif Belirle"
+                        />
+                        <span id="tl-text">TL</span>
+                      </div>
+                      <div className="offer-modal-button">
+                        <button id="offer-modal-accept-button" className="button">
+                          Onayla
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </Modal>
+                  </Modal>
+                  </>
+                  }
+                
+                </>
+                }
+                
               </div>
               <div className="product-details-description">
                 <p>Açıklama</p>
