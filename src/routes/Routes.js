@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Account from "../pages/Account/Account";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -12,8 +12,9 @@ function Routes() {
   useEffect(()=>{
     if(localStorage.getItem("AccessToken")){
       setIsLoggedIn(true);
+      console.log("HOBBAAAAAA");
     }
-  },[localStorage]);
+  },[]);
   console.log(isLoggedIn);
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import { getCategories } from "../../redux/actions/categories";
@@ -8,14 +8,36 @@ import { getStatus } from "../../redux/actions/status";
 import { useForm } from "react-hook-form";
 import cloud from "../../images/cloud.svg";
 import "./UploadProduct.scss";
+import { useDropzone } from "react-dropzone";
+import { uploadImage } from "../../redux/actions/uploadImage";
+
+const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 
 function UploadProduct() {
+  const [imageFile, setImageFile] = useState({});
+  const dispatch = useDispatch();
+  const onDrop = useCallback((acceptedFiles) => {
+    setImageFile(acceptedFiles[0]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+    onDrop,
+    noClick: true,
+    multiple: false,
+    accept: acceptedFileTypes,
+    maxSize: 400000,
+  });
+  useEffect(() => {
+    dispatch(uploadImage(imageFile));
+  }, [dispatch, imageFile]);
+  const uploadedImage = useSelector((state) => state.uploadedImage);
+  console.log(uploadedImage.data.url);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBrands());
@@ -175,14 +197,18 @@ function UploadProduct() {
               <div className="right-side-form">
                 <div className="upload-image">
                   <p id="product-image-p">Ürün Görseli</p>
-                  <div className="image-area">
+                  <div className="image-area" {...getRootProps()}>
+                    <input {...getInputProps()} />
                     <img src={cloud} alt="cloud" />
                     <p id="info-p">Sürükleyip bırakarak yükle</p>
                     <p>veya</p>
-                    <button id="choose-image-button">Görsel Seçin</button>
+                    <button id="choose-image-button" onClick={open}>
+                      Görsel Seçin
+                    </button>
                     <p>PNG ve JPEG Dosya boyutu max. 100kb</p>
                   </div>
                 </div>
+
                 <div className="submit-button">
                   <button id="upload-submit-button" className="button">
                     Kaydet
