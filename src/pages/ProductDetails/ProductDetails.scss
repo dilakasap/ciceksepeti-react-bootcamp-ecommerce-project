@@ -244,6 +244,22 @@
 #offer-modal-accept-button {
   width: 31.5rem;
 }
+.disabled{
+display: none;
+  
+}
+.enabled{
+  pointer-events:all;
+  opacity:1;
+}
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
 @media screen and (max-width: 1535px) {
   .detail-card-container {

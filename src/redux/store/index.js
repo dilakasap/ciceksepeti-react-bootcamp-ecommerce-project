@@ -14,6 +14,8 @@ import thunk from "redux-thunk";
 import { purchaseReducer } from "../reducers/purchase";
 import { rejectOfferReducer } from "../reducers/rejectOffer";
 import { acceptOfferReducer } from "../reducers/acceptOffer";
+import {offerReducer} from "../reducers/offer";
+import { cancelOfferReducer } from "../reducers/cancelOffer";
 
 const reducers = combineReducers({
   categories: categoriesReducer,
@@ -30,5 +32,7 @@ const reducers = combineReducers({
   purchase: purchaseReducer,
   rejectOffer: rejectOfferReducer,
   acceptOffer: acceptOfferReducer,
+  offer:offerReducer,
+  cancelOffer:cancelOfferReducer,
 });
 export const store = createStore(reducers, applyMiddleware(thunk));
