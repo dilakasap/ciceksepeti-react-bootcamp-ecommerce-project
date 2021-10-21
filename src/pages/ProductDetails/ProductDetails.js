@@ -77,7 +77,7 @@ function ProductDetails() {
         offer.status === "offered"
       ) {
          setHasOffered(true);
-         
+          
       }
 
     });
