@@ -16,6 +16,8 @@ import { rejectOfferReducer } from "../reducers/rejectOffer";
 import { acceptOfferReducer } from "../reducers/acceptOffer";
 import {offerReducer} from "../reducers/offer";
 import { cancelOfferReducer } from "../reducers/cancelOffer";
+import {uploadImageReducer} from "../reducers/uploadImage";
+import {createProductReducer} from "../reducers/createProduct";
 
 const reducers = combineReducers({
   categories: categoriesReducer,
@@ -34,5 +36,7 @@ const reducers = combineReducers({
   acceptOffer: acceptOfferReducer,
   offer:offerReducer,
   cancelOffer:cancelOfferReducer,
+  uploadedImage:uploadImageReducer,
+  createProduct:createProductReducer,
 });
 export const store = createStore(reducers, applyMiddleware(thunk));

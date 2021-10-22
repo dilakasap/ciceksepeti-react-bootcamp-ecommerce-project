@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import { getCategories } from "../../redux/actions/categories";
@@ -8,31 +8,139 @@ import { getStatus } from "../../redux/actions/status";
 import { useForm } from "react-hook-form";
 import cloud from "../../images/cloud.svg";
 import "./UploadProduct.scss";
+import { useDropzone } from "react-dropzone";
+import { uploadImage } from "../../redux/actions/uploadImage";
+import { postCreateProduct } from "../../redux/actions/createProduct";
+
+const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 
 function UploadProduct() {
+  const [imageFile, setImageFile] = useState({});
+  const [formObject, setFormObject] = useState({
+    price: "",
+    imageUrl: "",
+    title: "",
+    status: {
+      title: "",
+      id: "",
+    },
+    color: {
+      title: "",
+      id: "",
+    },
+    brand: {
+      title: "",
+      id: "",
+    },
+    category: {
+      title: "",
+      id: "",
+    },
+    description: "",
+    isOfferable: true,
+  });
+  console.log(formObject);
+  const dispatch = useDispatch();
+  const onDrop = useCallback((acceptedFiles) => {
+    setImageFile(acceptedFiles[0]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+    onDrop,
+    noClick: true,
+    multiple: false,
+    accept: acceptedFileTypes,
+    maxSize: 400000,
+  });
+  useEffect(() => {
+    dispatch(uploadImage(imageFile));
+  }, [dispatch, imageFile]);
+  const uploadedImage = useSelector((state) => state.uploadedImage);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBrands());
     dispatch(getColors());
     dispatch(getStatus());
   }, []);
+
+  // const handleChange =((e)=>{
+  //    setFormObject({category:e.target.value});
+  // })
   const categories = useSelector((state) => state.categories);
   const brands = useSelector((state) => state.brands);
   const colors = useSelector((state) => state.colors);
   const status = useSelector((state) => state.status);
+
+  useEffect(() => {
+    categories.data.map((item) => {
+      if (formObject.category.title === item.title) {
+        console.log(formObject.category.title);
+        console.log(item.title);
+        setFormObject({
+          ...formObject,
+          category: { ...formObject.category, id: item.id },
+        });
+      }
+    });
+  }, [formObject.category.title]);
+
+  useEffect(() => {
+    brands.data.map((item) => {
+      if (formObject.brand.title === item.title) {
+        console.log(formObject.brand.title);
+        console.log(item.title);
+        setFormObject({
+          ...formObject,
+          brand: { ...formObject.brand, id: item.id },
+        });
+      }
+    });
+  }, [formObject.brand.title]);
+
+  useEffect(() => {
+    colors.data.map((item) => {
+      if (formObject.color.title === item.title) {
+        console.log(formObject.color.title);
+        console.log(item.title);
+        setFormObject({
+          ...formObject,
+          color: { ...formObject.color, id: item.id },
+        });
+      }
+    });
+  }, [formObject.color.title]);
+
+  useEffect(() => {
+    status.data.map((item) => {
+      if (formObject.status.title === item.title) {
+        console.log(formObject.status.title);
+        console.log(item.title);
+        setFormObject({
+          ...formObject,
+          status: { ...formObject.status, id: item.id },
+        });
+      }
+    });
+  }, [formObject.status.title]);
+
+  const onSubmit = () => {
+    setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
+    dispatch(postCreateProduct({ formObject }));
+  };
   return (
     <div className="upload-product">
       <Header />
       <div className="upload-product-container">
         <div className="upload-product-wrapper">
           <p id="product-detail-p">Ürün Detayları</p>
-          <form onSubmit={handleSubmit()}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="product-detail-form">
               <div className="left-side-form">
                 <label htmlFor="urunadı">Ürün Adı</label>
@@ -45,6 +153,9 @@ function UploadProduct() {
                     required: true,
                     maxLength: 100,
                   })}
+                  onChange={(e) => {
+                    setFormObject({ ...formObject, title: e.target.value });
+                  }}
                 />
                 <label htmlFor="acıklama">Açıklama</label>
                 <input
@@ -59,6 +170,13 @@ function UploadProduct() {
                     required: true,
                     maxLength: 500,
                   })}
+                  onChange={(e) => {
+                    if (e.target.value !== undefined)
+                      setFormObject({
+                        ...formObject,
+                        description: e.target.value,
+                      });
+                  }}
                 />
                 <div className="select-box-first-line">
                   <div className="select-box-first-line-category">
@@ -73,12 +191,23 @@ function UploadProduct() {
                       {...register("productCategory", {
                         required: true,
                       })}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        if (e.target.value !== undefined)
+                          setFormObject({
+                            ...formObject,
+                            category: {
+                              ...formObject.category,
+                              title: e.target.value,
+                            },
+                          });
+                      }}
                     >
                       <option value="" disabled selected hidden>
                         Kategori Seç
                       </option>
                       {categories.data.map((category) => (
-                        <option value="" key={category.id}>
+                        <option value={category.title} key={category.id}>
                           {category.title.charAt(0).toUpperCase() +
                             category.title.slice(1)}
                         </option>
@@ -95,12 +224,22 @@ function UploadProduct() {
                       {...register("productBrand", {
                         required: true,
                       })}
+                      onChange={(e) => {
+                        if (e.target.value !== undefined)
+                          setFormObject({
+                            ...formObject,
+                            brand: {
+                              ...formObject.brand,
+                              title: e.target.value,
+                            },
+                          });
+                      }}
                     >
                       <option value="" disabled selected hidden>
                         Marka Seç
                       </option>
                       {brands.data.map((brand) => (
-                        <option value="" key={brand.id}>
+                        <option value={brand.title} key={brand.id}>
                           {brand.title.charAt(0).toUpperCase() +
                             brand.title.slice(1)}
                         </option>
@@ -119,12 +258,22 @@ function UploadProduct() {
                       {...register("productColor", {
                         required: "select one option",
                       })}
+                      onChange={(e) => {
+                        if (e.target.value !== undefined)
+                          setFormObject({
+                            ...formObject,
+                            color: {
+                              ...formObject.color,
+                              title: e.target.value,
+                            },
+                          });
+                      }}
                     >
                       <option value="" disabled selected hidden>
                         Renk Seç
                       </option>
                       {colors.data.map((color) => (
-                        <option value="" key={color.id}>
+                        <option value={color.title} key={color.id}>
                           {color.title.charAt(0).toUpperCase() +
                             color.title.slice(1)}
                         </option>
@@ -141,12 +290,22 @@ function UploadProduct() {
                       {...register("productStatus", {
                         required: "select one option",
                       })}
+                      onChange={(e) => {
+                        if (e.target.value !== undefined)
+                          setFormObject({
+                            ...formObject,
+                            status: {
+                              ...formObject.status,
+                              title: e.target.value,
+                            },
+                          });
+                      }}
                     >
                       <option value="" disabled selected hidden>
                         Kullanım Durumu
                       </option>
                       {status.data.map((status) => (
-                        <option value="" key={status.id}>
+                        <option value={status.title} key={status.id}>
                           {status.title.charAt(0).toUpperCase() +
                             status.title.slice(1)}
                         </option>
@@ -161,8 +320,11 @@ function UploadProduct() {
                       required: "true",
                     })}
                     className="input"
-                    type="text"
+                    type="number"
                     placeholder="Bir fiyat girin"
+                    onChange={(e) => {
+                      setFormObject({ ...formObject, price: e.target.value });
+                    }}
                   />
                   <span id="tl">TL</span>
                 </div>
@@ -175,14 +337,18 @@ function UploadProduct() {
               <div className="right-side-form">
                 <div className="upload-image">
                   <p id="product-image-p">Ürün Görseli</p>
-                  <div className="image-area">
+                  <div className="image-area" {...getRootProps()}>
+                    <input {...getInputProps()} />
                     <img src={cloud} alt="cloud" />
                     <p id="info-p">Sürükleyip bırakarak yükle</p>
                     <p>veya</p>
-                    <button id="choose-image-button">Görsel Seçin</button>
+                    <button id="choose-image-button" onClick={open}>
+                      Görsel Seçin
+                    </button>
                     <p>PNG ve JPEG Dosya boyutu max. 100kb</p>
                   </div>
                 </div>
+
                 <div className="submit-button">
                   <button id="upload-submit-button" className="button">
                     Kaydet
