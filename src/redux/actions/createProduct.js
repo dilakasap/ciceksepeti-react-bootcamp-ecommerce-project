@@ -5,35 +5,37 @@ import {
 } from "../constants/createProduct";
 import axios from "axios";
 export const postCreateProduct = (data) => (dispatch) => {
+  console.log(data.formObject.price);
   dispatch({ type: POST_CREATE_PRODUCT_PENDING });
   const createProductData = {
-    price: data.price,
-    imageUrl: data.imageUrl,
-    title: data.title,
+    price: data.formObject.price,
+    imageUrl: data.formObject.imageUrl,
+    title: data.formObject.title,
     status: {
-      title: data.status.title,
-      id: data.status.id,
+      title: data.formObject.status.title,
+      id: data.formObject.status.id,
     },
     color: {
-      title: data.color.title,
-      id: data.color.id,
+      title: data.formObject.color.title,
+      id: data.formObject.color.id,
     },
     brand: {
-      title: data.brand.title,
-      id: data.brand.id,
+      title: data.formObject.brand.title,
+      id: data.formObject.brand.id,
     },
     category: {
-      title: data.category.title,
-      id: data.category.id,
+      title: data.formObject.category.title,
+      id: data.formObject.category.id,
     },
-    description: data.description,
-    isOfferable: data.isOfferable,
+    description: data.formObject.description,
+    isOfferable: data.formObject.isOfferable,
   };
   const token = localStorage.getItem("AccessToken");
+  console.log(createProductData.price);
   axios
     .post(
       "https://bootcampapi.techcs.io/api/fe/v1/product/create",
-      { data },
+      createProductData,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
