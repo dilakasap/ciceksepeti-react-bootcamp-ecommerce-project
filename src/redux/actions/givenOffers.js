@@ -12,7 +12,8 @@ export const getGivenOffers = () => (dispatch) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      dispatch({ type: GET_GIVEN_OFFERS_SUCCESS, payload:response.data});
+      console.log(response);
+      dispatch({ type: GET_GIVEN_OFFERS_SUCCESS, payload: response.data });
     })
     .catch((error) =>
       dispatch({ type: GET_GIVEN_OFFERS_ERROR, payload: error })

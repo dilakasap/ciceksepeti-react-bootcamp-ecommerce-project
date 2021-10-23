@@ -10,7 +10,10 @@ import "./ProductDetails.scss";
 import { putPurchase } from "../../redux/actions/purchase";
 import { getGivenOffers } from "../../redux/actions/givenOffers";
 import { postOffer } from "../../redux/actions/offer";
-import {cancelOffer} from "../../redux/actions/cancelOffer";
+import { cancelOffer } from "../../redux/actions/cancelOffer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import buyLogo from "../../images/buy-logo.svg";
 function ProductDetails() {
   const radio1 = useRef(null);
   const radio2 = useRef(null);
@@ -30,10 +33,12 @@ function ProductDetails() {
   };
   const [isOpenBuy, setIsOpenBuy] = useState(false);
 
-  const [price, setPrice] = useState();
-  console.log(price);
+  const purchase = useSelector((state) => state.purchase);
+  
 
-  const [offerId,setOfferId]=useState();
+  const [price, setPrice] = useState();
+
+  const [offerId, setOfferId] = useState();
   const openProductDetailModal = () => {
     setIsOpenBuy(true);
   };
@@ -48,7 +53,7 @@ function ProductDetails() {
     setIsOpenOffer(false);
   };
   const productDetails = useSelector((state) => state.details);
-  console.log(productDetails);
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const [hasOffered, setHasOffered] = useState(false);
@@ -56,44 +61,47 @@ function ProductDetails() {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);
 
-
   const purchaseProduct = () => {
     dispatch(putPurchase(id));
+    setIsOpenBuy(false);
+
+    if (purchase.status === REQUEST_STATUS.SUCCESS) {
+      toast.success("Satın alındı.", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img src={buyLogo} />,
+      });
+    }
   };
   const postOfferPrice = () => {
     dispatch(postOffer(id, Number(price)));
   };
-  const cancelOfferButton=(()=>{
+  const cancelOfferButton = () => {
     dispatch(cancelOffer(offerId));
-  })
+  };
   useEffect(() => {
     dispatch(getGivenOffers());
   }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     givenOffers.data.map((offer) => {
       if (
         offer.product.id === productDetails.data.id &&
         offer.status === "offered"
       ) {
-         setHasOffered(true);
-          
+        setHasOffered(true);
       }
-
     });
-  },[dispatch]);
-  useEffect(()=>{
+  }, [dispatch]);
+  useEffect(() => {
     givenOffers.data.map((offer) => {
-      if (offer.product.id === productDetails.data.id ) {
+      if (offer.product.id === productDetails.data.id) {
         setOfferId(offer.id);
       }
     });
-  },[dispatch]);
-
+  }, [dispatch]);
 
   const givenOffers = useSelector((state) => state.givenOffers);
-
-  console.log(givenOffers);
 
   return (
     <div>
@@ -128,7 +136,7 @@ function ProductDetails() {
               </div>
               <div className="product-details-buttons">
                 {productDetails.data.isSold ? (
-                  <div>Satılmış</div>
+                  <div className="bought-product">Bu Ürün Satışta Değil</div>
                 ) : (
                   <>
                     <button
@@ -156,8 +164,12 @@ function ProductDetails() {
                         </button>
                       </div>
                     </Modal>
+                    <ToastContainer />
                     {productDetails.data.isOfferable && hasOffered ? (
-                      <button onClick={cancelOfferButton} className="button-secondary">
+                      <button
+                        onClick={cancelOfferButton}
+                        className="button-secondary"
+                      >
                         Teklifi Geri Çek
                       </button>
                     ) : (

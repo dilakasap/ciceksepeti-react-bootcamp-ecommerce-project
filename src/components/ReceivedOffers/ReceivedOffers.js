@@ -3,15 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { getReceivedOffers } from "../../redux/actions/receivedOffers";
 import { postRejectOffer } from "../../redux/actions/rejectOffer";
 import { putAcceptOffer } from "../../redux/actions/acceptOffer";
-
 import "./ReceivedOffers.scss";
+import { REQUEST_STATUS } from "../../helpers/Constants";
 function ReceivedOffers() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getReceivedOffers());
   }, [dispatch]);
   const receivedOffers = useSelector((state) => state.receivedOffers);
-  console.log(receivedOffers);
+  const acceptOffer = useSelector((state)=> state.acceptOffer);
+  const rejectOffer = useSelector((state)=> state.rejectOffer);
+  useEffect(() => {
+    if (acceptOffer.status === REQUEST_STATUS.SUCCESS || rejectOffer.status === REQUEST_STATUS.SUCCESS) {
+      dispatch(getReceivedOffers());
+    }
+  }, [acceptOffer, rejectOffer]);
   return (
     <div>
       {receivedOffers.data.map((item) => (
@@ -29,7 +35,7 @@ function ReceivedOffers() {
             </div>
             <div className="given-offers-right-side">
             {
-              item.status==="offered" && 
+              item.status==="offered" && item.isSold !== "sold" &&
               <>
               <button
                 onClick={() => dispatch(putAcceptOffer(item.id))}
@@ -50,10 +56,10 @@ function ReceivedOffers() {
               </>
             }
             {
-              item.status==="accepted" && <div>Onaylandı..</div> 
+              item.status==="accepted" && <div className="accepted">Onaylandı</div> 
             }
             {
-              item.status==="rejected" && <div>Reddedildi..</div> 
+              item.status==="rejected" && <div className="rejected">Reddedildi</div> 
             }
 
               
@@ -64,5 +70,7 @@ function ReceivedOffers() {
     </div>
   );
 }
+
+
 
 export default ReceivedOffers;

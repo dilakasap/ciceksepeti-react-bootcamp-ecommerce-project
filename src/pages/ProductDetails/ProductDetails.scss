@@ -22,6 +22,7 @@
 }
 .product-details {
   margin: 1.5rem 6rem 3rem 6rem;
+  width: 100%;
 }
 .product-details-name {
   font-size: 3.4rem;
@@ -87,7 +88,8 @@
 .product-details-description {
   color: $text-color3;
   max-width: 48rem;
-  height: 100% p {
+  height: 100%;
+  p {
     font-size: 1.8rem;
     font-weight: 700;
     color: $text-color1;
@@ -244,21 +246,44 @@
 #offer-modal-accept-button {
   width: 31.5rem;
 }
-.disabled{
-display: none;
-  
+.disabled {
+  display: none;
 }
-.enabled{
-  pointer-events:all;
-  opacity:1;
+.enabled {
+  pointer-events: all;
+  opacity: 1;
 }
-input[type='number'] {
-  -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+.bought-product {
+  background-color: $orange-background;
+  color: $orange-text;
+  height: 4.5rem;
+  padding: 1rem 2.4rem;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.Toastify__toast--success {
+  border-radius: 0.8rem !important;
+  background:$light-green !important;
+  box-shadow:0 0.3rem 1.2rem #1E36482E!important;
+  .Toastify__toast-body{
+    div{
+      color:$green !important;
+      font-size: 1.6rem!important;
+    }
+  }
+}
+
+.Toastify__close-button{
+  display: none;
 }
 
 @media screen and (max-width: 1535px) {

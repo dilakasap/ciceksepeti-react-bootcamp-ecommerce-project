@@ -12,7 +12,7 @@ export const putAcceptOffer = (id) => (dispatch) => {
   axios
     .put(
       "https://bootcampapi.techcs.io/api/fe/v1/account/accept-offer/" + id,
-      {},
+      null,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

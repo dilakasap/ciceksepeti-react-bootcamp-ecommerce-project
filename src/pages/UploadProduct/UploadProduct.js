@@ -11,11 +11,14 @@ import "./UploadProduct.scss";
 import { useDropzone } from "react-dropzone";
 import { uploadImage } from "../../redux/actions/uploadImage";
 import { postCreateProduct } from "../../redux/actions/createProduct";
+import { REQUEST_STATUS } from "../../helpers/Constants";
+import { useHistory } from "react-router";
 
 const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 
 function UploadProduct() {
-  const [imageFile, setImageFile] = useState({});
+  const history = useHistory();
+  const [imageFile, setImageFile] = useState(null);
   const [formObject, setFormObject] = useState({
     price: "",
     imageUrl: "",
@@ -39,7 +42,7 @@ function UploadProduct() {
     description: "",
     isOfferable: true,
   });
-  console.log(formObject);
+
   const dispatch = useDispatch();
   const onDrop = useCallback((acceptedFiles) => {
     setImageFile(acceptedFiles[0]);
@@ -53,9 +56,15 @@ function UploadProduct() {
     maxSize: 400000,
   });
   useEffect(() => {
+    console.log("TEST");
+    console.log(imageFile);
+    if (imageFile === null) {
+      return;
+    }
     dispatch(uploadImage(imageFile));
-  }, [dispatch, imageFile]);
+  }, [imageFile]);
   const uploadedImage = useSelector((state) => state.uploadedImage);
+  console.log(uploadedImage.data.url);
 
   const {
     register,
@@ -81,8 +90,6 @@ function UploadProduct() {
   useEffect(() => {
     categories.data.map((item) => {
       if (formObject.category.title === item.title) {
-        console.log(formObject.category.title);
-        console.log(item.title);
         setFormObject({
           ...formObject,
           category: { ...formObject.category, id: item.id },
@@ -94,8 +101,6 @@ function UploadProduct() {
   useEffect(() => {
     brands.data.map((item) => {
       if (formObject.brand.title === item.title) {
-        console.log(formObject.brand.title);
-        console.log(item.title);
         setFormObject({
           ...formObject,
           brand: { ...formObject.brand, id: item.id },
@@ -107,8 +112,6 @@ function UploadProduct() {
   useEffect(() => {
     colors.data.map((item) => {
       if (formObject.color.title === item.title) {
-        console.log(formObject.color.title);
-        console.log(item.title);
         setFormObject({
           ...formObject,
           color: { ...formObject.color, id: item.id },
@@ -120,8 +123,6 @@ function UploadProduct() {
   useEffect(() => {
     status.data.map((item) => {
       if (formObject.status.title === item.title) {
-        console.log(formObject.status.title);
-        console.log(item.title);
         setFormObject({
           ...formObject,
           status: { ...formObject.status, id: item.id },
@@ -132,8 +133,18 @@ function UploadProduct() {
 
   const onSubmit = () => {
     setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
-    dispatch(postCreateProduct({ formObject }));
+    const newFormObject = formObject;
+    newFormObject.imageUrl = uploadedImage.data.url;
+    dispatch(postCreateProduct({ formObject: newFormObject }));
   };
+
+  const createProduct = useSelector((state) => state.createProduct);
+  useEffect(() => {
+    if (createProduct.status === REQUEST_STATUS.SUCCESS) {
+      history.push(`/products/${createProduct.data.id}`);
+    }
+  }, [createProduct]);
+
   return (
     <div className="upload-product">
       <Header />

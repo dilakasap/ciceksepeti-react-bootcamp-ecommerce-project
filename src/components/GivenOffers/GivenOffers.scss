@@ -58,6 +58,9 @@
   height: auto;
   font-weight: 400;
 }
+.bought{
+  color:$green;
+}
 @media screen and (max-width: 900px) {
   .given-offers-tab{
     display:flex;

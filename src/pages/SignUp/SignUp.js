@@ -8,7 +8,9 @@ import { useDispatch } from "react-redux";
 import { postSignup } from "../../redux/actions/signup";
 import { useSelector } from "react-redux";
 import { REQUEST_STATUS } from "../../helpers/Constants";
-import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import errorLogo from "../../images/error-logo.svg";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -16,14 +18,17 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const signup = useSelector((state) => state.signup);
-  const history = useHistory();
-
+  
   useEffect(() => {
     if (signup.status === REQUEST_STATUS.SUCCESS) {
       localStorage.setItem("AccessToken", signup.data.access_token);
-      history.push("/");
+      window.location.href="/";
     } else if (signup.status === REQUEST_STATUS.ERROR) {
-      alert(signup.error.message);
+      toast("Bu mail adresi zaten mevcut!",{
+        hideProgressBar:true,
+        autoClose:3000,
+        icon: ({theme, type}) =>  <img src={errorLogo}/>
+      });
     }
   }, [signup]);
   const {
@@ -37,6 +42,7 @@ function SignUp() {
       return;
     }
     dispatch(postSignup(email, password));
+    localStorage.setItem("email",email);
   };
   useEffect(() => {
     if (errors.email || errors.password) {
@@ -102,9 +108,10 @@ function SignUp() {
                   <div>Şifreniz 8 ile 20 arasında olmalıdır.</div>
                 )} 
               </Modal>  */}
-              <button className="button" id="signup-button">
+              <button className="button" id="signup-button" >
                 Üye Ol
               </button>
+              <ToastContainer />
             </form>
             <div className="toLogin">
               <p>

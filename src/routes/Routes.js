@@ -12,7 +12,6 @@ function Routes() {
   useEffect(()=>{
     if(localStorage.getItem("AccessToken")){
       setIsLoggedIn(true);
-      console.log("HOBBAAAAAA");
     }
   },[]);
   console.log(isLoggedIn);
