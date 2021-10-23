@@ -18,6 +18,7 @@ import {offerReducer} from "../reducers/offer";
 import { cancelOfferReducer } from "../reducers/cancelOffer";
 import {uploadImageReducer} from "../reducers/uploadImage";
 import {createProductReducer} from "../reducers/createProduct";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const reducers = combineReducers({
   categories: categoriesReducer,
@@ -39,4 +40,4 @@ const reducers = combineReducers({
   uploadedImage:uploadImageReducer,
   createProduct:createProductReducer,
 });
-export const store = createStore(reducers, applyMiddleware(thunk));
+export const store = createStore(reducers,composeWithDevTools(applyMiddleware(thunk)));

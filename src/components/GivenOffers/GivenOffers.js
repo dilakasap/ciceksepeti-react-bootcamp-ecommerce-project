@@ -4,7 +4,12 @@ import { getGivenOffers } from "../../redux/actions/givenOffers";
 import { putPurchase } from "../../redux/actions/purchase";
 import Modal from "react-modal";
 import "./GivenOffers.scss";
+import { REQUEST_STATUS } from "../../helpers/Constants";
 function GivenOffers() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getGivenOffers());
+  }, [dispatch]);
   const [isOpenBuy, setIsOpenBuy] = useState(false);
   const openProductDetailModal = () => {
     setIsOpenBuy(true);
@@ -14,11 +19,18 @@ function GivenOffers() {
   };
   const purchaseProduct = (id) => {
     dispatch(putPurchase(id));
+    setIsOpenBuy(false);
   };
-  const dispatch = useDispatch();
+
+  const purchase = useSelector((state)=> state.purchase);
   useEffect(() => {
-    dispatch(getGivenOffers());
-  }, [dispatch]);
+    if (purchase.status === REQUEST_STATUS.SUCCESS) {
+      dispatch(getGivenOffers());
+      closeBuyModal();
+    } 
+  }, [purchase]);
+
+
   const givenOffers = useSelector((state) => state.givenOffers);
   console.log(givenOffers);
   return (
@@ -37,12 +49,16 @@ function GivenOffers() {
               </div>
             </div>
             <div className="given-offers-right-side">
-              {item.isSold === "sold" ? (
-                <div>Satın Alındı</div>
+              {item.isSold ? (
+                <div className="bought">Satın Alındı</div>
               ) : (
                 <>
-                  {item.status === "offered" && <div>Teklif Verildi</div>}
-                  {item.status === "rejected" && <div>Reddedildi</div>}
+                  {item.status === "offered" && (
+                    <div className="accepted">Teklif Verildi</div>
+                  )}
+                  {item.status === "rejected" && (
+                    <div className="rejected">Reddedildi</div>
+                  )}
 
                   {item.status === "accepted" && (
                     <>
@@ -60,20 +76,20 @@ function GivenOffers() {
                         </p>
                         <div className="buy-modal-buttons">
                           <button
-                            onClick={closeBuyModal}
+                            onClick={() => closeBuyModal()}
                             className="button-secondary"
                           >
                             Vazgeç
                           </button>
                           <button
-                            onClick={purchaseProduct(item.product.id)}
+                            onClick={() => purchaseProduct(item.product.id)}
                             className="button"
                           >
                             Satın Al
                           </button>
                         </div>
                       </Modal>
-                      <span>Onaylandı</span>
+                      <span className="accepted">Onaylandı</span>
                     </>
                   )}
                 </>

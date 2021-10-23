@@ -8,8 +8,11 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postLogin } from "../../redux/actions/login";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { REQUEST_STATUS } from "../../helpers/Constants";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import errorLogo from "../../images/error-logo.svg";
+
 
 function Login() {
   const [hasError, setHasError] = useState(false);
@@ -17,14 +20,17 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login);
-  const history = useHistory();
 
   useEffect(() => {
     if (login.status === REQUEST_STATUS.SUCCESS) {
       localStorage.setItem("AccessToken",login.data.access_token);
-      history.push("/");
+      window.location.href = "/";
     } else if (login.status === REQUEST_STATUS.ERROR) {
-      alert(login.error.message);
+      toast("Emailiniz veya şifreniz hatalı.",{
+        hideProgressBar:true,
+        autoClose:3000,
+        icon: ({theme, type}) =>  <img src={errorLogo}/>
+      });
     }
   }, [login]);
 
@@ -91,6 +97,7 @@ function Login() {
               <button className="button" id="login-button">
                 Giriş Yap
               </button>
+              <ToastContainer />
             </form>
             <div className="toLogin">
               <p>
