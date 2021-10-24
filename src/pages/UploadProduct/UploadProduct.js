@@ -19,6 +19,8 @@ const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 function UploadProduct() {
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
+  const [toggleCheck,setToggleCheck]=useState(false);
+  console.log(toggleCheck);
   const [formObject, setFormObject] = useState({
     price: "",
     imageUrl: "",
@@ -40,7 +42,7 @@ function UploadProduct() {
       id: "",
     },
     description: "",
-    isOfferable: true,
+    isOfferable:toggleCheck,
   });
 
   const dispatch = useDispatch();
@@ -340,9 +342,9 @@ function UploadProduct() {
                   <span id="tl">TL</span>
                 </div>
                 <div className="offer-option-wrapper">
-                  <span id="offer-option">Teklif opsiyonu</span>
-                  <input type="checkbox" id="switch" />
-                  <label htmlFor="" id="label-offer"></label>
+                  <span id="offer-option">Teklif opsiyonu </span>
+                  <input onChange={()=>toggleCheck ? setToggleCheck(false):setToggleCheck(true)} type="checkbox" class="toggle" />
+                  <label htmlFor=""></label>
                 </div>
               </div>
               <div className="right-side-form">
