@@ -10,7 +10,10 @@ import cloud from "../../images/cloud.svg";
 import "./UploadProduct.scss";
 import { useDropzone } from "react-dropzone";
 import { uploadImage } from "../../redux/actions/uploadImage";
-import { postCreateProduct } from "../../redux/actions/createProduct";
+import {
+  postCreateProduct,
+  resetCreateProduct,
+} from "../../redux/actions/createProduct";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 import { useHistory } from "react-router";
 
@@ -19,8 +22,6 @@ const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 function UploadProduct() {
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
-  const [toggleCheck,setToggleCheck]=useState(false);
-  console.log(toggleCheck);
   const [formObject, setFormObject] = useState({
     price: "",
     imageUrl: "",
@@ -42,15 +43,14 @@ function UploadProduct() {
       id: "",
     },
     description: "",
-    isOfferable:toggleCheck,
+    isOfferable: false,
   });
-
   const dispatch = useDispatch();
   const onDrop = useCallback((acceptedFiles) => {
     setImageFile(acceptedFiles[0]);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
     noClick: true,
     multiple: false,
@@ -58,15 +58,15 @@ function UploadProduct() {
     maxSize: 400000,
   });
   useEffect(() => {
-    console.log("TEST");
-    console.log(imageFile);
+    // console.log("TEST");
+    // console.log(imageFile);
     if (imageFile === null) {
       return;
     }
     dispatch(uploadImage(imageFile));
   }, [imageFile]);
   const uploadedImage = useSelector((state) => state.uploadedImage);
-  console.log(uploadedImage.data.url);
+  // console.log(uploadedImage.data.url);
 
   const {
     register,
@@ -136,6 +136,7 @@ function UploadProduct() {
   const onSubmit = () => {
     setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
     const newFormObject = formObject;
+    console.log(formObject);
     newFormObject.imageUrl = uploadedImage.data.url;
     dispatch(postCreateProduct({ formObject: newFormObject }));
   };
@@ -143,6 +144,7 @@ function UploadProduct() {
   const createProduct = useSelector((state) => state.createProduct);
   useEffect(() => {
     if (createProduct.status === REQUEST_STATUS.SUCCESS) {
+      dispatch(resetCreateProduct());
       history.push(`/products/${createProduct.data.id}`);
     }
   }, [createProduct]);
@@ -171,8 +173,7 @@ function UploadProduct() {
                   }}
                 />
                 <label htmlFor="acıklama">Açıklama</label>
-                <input
-                  type="text"
+                <textarea
                   className="input description-input"
                   placeholder="Ürün açıklaması girin"
                   id={
@@ -343,7 +344,16 @@ function UploadProduct() {
                 </div>
                 <div className="offer-option-wrapper">
                   <span id="offer-option">Teklif opsiyonu </span>
-                  <input onChange={()=>toggleCheck ? setToggleCheck(false):setToggleCheck(true)} type="checkbox" class="toggle" />
+                  <input
+                    onChange={(e) => {
+                      setFormObject({
+                        ...formObject,
+                        isOfferable: e.target.checked,
+                      });
+                    }}
+                    type="checkbox"
+                    class="toggle"
+                  />
                   <label htmlFor=""></label>
                 </div>
               </div>

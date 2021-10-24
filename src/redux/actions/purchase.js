@@ -8,7 +8,6 @@ import axios from "axios";
 export const putPurchase = (id) => (dispatch) => {
   dispatch({ type: PUT_PURCHASE_PENDING });
   const token = localStorage.getItem("AccessToken");
-  console.log(token);
   axios
     .put(
       "https://bootcampapi.techcs.io/api/fe/v1/product/purchase/" + id,

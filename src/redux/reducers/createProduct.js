@@ -2,6 +2,7 @@ import {
   POST_CREATE_PRODUCT_PENDING,
   POST_CREATE_PRODUCT_SUCCESS,
   POST_CREATE_PRODUCT_ERROR,
+  POST_CREATE_PRODUCT_INITIAL,
 } from "../constants/createProduct";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 const initial_state = {
@@ -11,6 +12,8 @@ const initial_state = {
 };
 export const createProductReducer = (state = initial_state, action) => {
   switch (action.type) {
+    case POST_CREATE_PRODUCT_INITIAL:
+      return { state, status: REQUEST_STATUS.PENDING };
     case POST_CREATE_PRODUCT_PENDING:
       return { ...state, status: REQUEST_STATUS.PENDING };
     case POST_CREATE_PRODUCT_SUCCESS:
@@ -21,3 +24,4 @@ export const createProductReducer = (state = initial_state, action) => {
       return state;
   }
 };
+

@@ -60,6 +60,7 @@
 }
 .bought{
   color:$green;
+  float: right;
 }
 @media screen and (max-width: 900px) {
   .given-offers-tab{
@@ -79,8 +80,11 @@
     img{
       width: 7.8rem;
       height: 8.4rem;
-      
     }
+  }
+  .given-offers-right-side{
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 

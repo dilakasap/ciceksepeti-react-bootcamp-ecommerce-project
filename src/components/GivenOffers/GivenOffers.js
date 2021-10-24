@@ -5,6 +5,9 @@ import { putPurchase } from "../../redux/actions/purchase";
 import Modal from "react-modal";
 import "./GivenOffers.scss";
 import { REQUEST_STATUS } from "../../helpers/Constants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import buyLogo from "../../images/buy-logo.svg";
 function GivenOffers() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,6 +30,11 @@ function GivenOffers() {
     if (purchase.status === REQUEST_STATUS.SUCCESS) {
       dispatch(getGivenOffers());
       closeBuyModal();
+      toast.success("Satın alındı.", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img src={buyLogo} />,
+      });
     } 
   }, [purchase]);
 

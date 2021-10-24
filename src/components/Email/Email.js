@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getEmail } from "../../redux/actions/email";
 import account from "../../images/account.svg";
 import "./Email.scss";
+import { useHistory } from "react-router";
 function Email() {
-  const [email,setEmail]=useState("");
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
   useEffect(() => {
     setEmail(localStorage.getItem("email"));
   }, []);
 
+  const logOut = () => {
+    localStorage.removeItem("AccessToken");
+    localStorage.removeItem("email");
+    window.location.href="/";
+  };
   return (
     <div className="e-mail-wrapper">
+      <div className="email-left-side">
       <div className="account-logo">
-        <img src={account}></img>
+        <img alt="account-logo" src={account}></img>
       </div>
       <div className="e-mail"> {email}</div>
+      </div>
+      <button id="logout-button" className="button-secondary" onClick={logOut}>Çıkış Yap</button>
     </div>
   );
 }

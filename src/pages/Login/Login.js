@@ -9,10 +9,9 @@ import { useDispatch } from "react-redux";
 import { postLogin } from "../../redux/actions/login";
 import { useSelector } from "react-redux";
 import { REQUEST_STATUS } from "../../helpers/Constants";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import errorLogo from "../../images/error-logo.svg";
-
 
 function Login() {
   const [hasError, setHasError] = useState(false);
@@ -23,13 +22,13 @@ function Login() {
 
   useEffect(() => {
     if (login.status === REQUEST_STATUS.SUCCESS) {
-      localStorage.setItem("AccessToken",login.data.access_token);
+      localStorage.setItem("AccessToken", login.data.access_token);
       window.location.href = "/";
     } else if (login.status === REQUEST_STATUS.ERROR) {
-      toast("Emailiniz veya şifreniz hatalı.",{
-        hideProgressBar:true,
-        autoClose:3000,
-        icon: ({theme, type}) =>  <img src={errorLogo}/>
+      toast("Emailiniz veya şifreniz hatalı.", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img alt="error" src={errorLogo} />,
       });
     }
   }, [login]);
@@ -45,7 +44,7 @@ function Login() {
       return;
     }
     dispatch(postLogin(email, password));
-    localStorage.setItem("email",email)
+    localStorage.setItem("email", email);
   };
   useEffect(() => {
     if (errors.email || errors.password) {
@@ -97,7 +96,6 @@ function Login() {
               <button className="button" id="login-button">
                 Giriş Yap
               </button>
-              <ToastContainer />
             </form>
             <div className="toLogin">
               <p>

@@ -35,6 +35,10 @@
   width: 11.5rem;
   height: 4rem;
 }
+.user{
+  display: flex;
+  position: relative;
+}
 
 @media screen and (max-width: 1535px) {
   .navbar {
@@ -49,6 +53,20 @@
 @media screen and (max-width: 900px) {
   .navbar {
     margin: 0 4rem;
+  }
+  #header-product-button{
+    visibility: hidden;
+    width: 1rem;
+    &::after{
+      content:url("../../images/plus.svg");
+      visibility: visible;
+  background-color: #f0f8ff;
+  padding:0.8rem 1rem;
+  border-radius: 0.8rem;
+  position: absolute;
+  top:0;
+  right: 12.5rem;
+    }
   }
 }
 @media screen and (max-width: 375px) {
