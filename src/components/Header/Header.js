@@ -19,9 +19,11 @@ function Header() {
     history.push("/login");
   };
   const goAccountPage = () => {
+    console.log("HESAP");
     history.push("/account");
   };
   const goUploadProductPage = () => {
+    console.log("CREATEEEE");
     history.push("/upload-product");
   };
   return (

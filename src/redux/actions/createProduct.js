@@ -2,10 +2,10 @@ import {
   POST_CREATE_PRODUCT_PENDING,
   POST_CREATE_PRODUCT_SUCCESS,
   POST_CREATE_PRODUCT_ERROR,
+  POST_CREATE_PRODUCT_INITIAL,
 } from "../constants/createProduct";
 import axios from "axios";
 export const postCreateProduct = (data) => (dispatch) => {
-  console.log(data.formObject.price);
   dispatch({ type: POST_CREATE_PRODUCT_PENDING });
   const createProductData = {
     price: data.formObject.price,
@@ -52,3 +52,8 @@ export const postCreateProduct = (data) => (dispatch) => {
       });
     });
 };
+
+export const resetCreateProduct = (data) => (dispatch) => {
+  dispatch({ type: POST_CREATE_PRODUCT_INITIAL});
+}
+

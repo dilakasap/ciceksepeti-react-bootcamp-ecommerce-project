@@ -111,7 +111,6 @@ function SignUp() {
               <button className="button" id="signup-button" >
                 Üye Ol
               </button>
-              <ToastContainer />
             </form>
             <div className="toLogin">
               <p>

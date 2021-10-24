@@ -34,7 +34,6 @@ function ProductDetails() {
   const [isOpenBuy, setIsOpenBuy] = useState(false);
 
   const purchase = useSelector((state) => state.purchase);
-  
 
   const [price, setPrice] = useState();
 
@@ -53,6 +52,9 @@ function ProductDetails() {
     setIsOpenOffer(false);
   };
   const productDetails = useSelector((state) => state.details);
+  const givenOffers = useSelector((state) => state.givenOffers);
+  const cancelOfferState = useSelector((state) => state.cancelOffer);
+  const offer = useSelector((state) => state.offer);
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -63,15 +65,6 @@ function ProductDetails() {
 
   const purchaseProduct = () => {
     dispatch(putPurchase(id));
-    setIsOpenBuy(false);
-
-    if (purchase.status === REQUEST_STATUS.SUCCESS) {
-      toast.success("Satın alındı.", {
-        hideProgressBar: true,
-        autoClose: 3000,
-        icon: ({ theme, type }) => <img src={buyLogo} />,
-      });
-    }
   };
   const postOfferPrice = () => {
     dispatch(postOffer(id, Number(price)));
@@ -84,24 +77,55 @@ function ProductDetails() {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log("GIVENN OFFERR");
+    console.log(givenOffers);
     givenOffers.data.map((offer) => {
       if (
         offer.product.id === productDetails.data.id &&
         offer.status === "offered"
       ) {
         setHasOffered(true);
-      }
-    });
-  }, [dispatch]);
-  useEffect(() => {
-    givenOffers.data.map((offer) => {
-      if (offer.product.id === productDetails.data.id) {
         setOfferId(offer.id);
+
       }
     });
-  }, [dispatch]);
+  }, [givenOffers]);
 
-  const givenOffers = useSelector((state) => state.givenOffers);
+  useEffect(() => {
+    if (purchase.status === REQUEST_STATUS.SUCCESS) {
+      setIsOpenBuy(false);
+      toast.success("Satın alındı..", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img src={buyLogo} />,
+      });
+      dispatch(getProductDetails(id));
+    }
+  }, [purchase]);
+
+  useEffect(() => {
+    if (offer.status === REQUEST_STATUS.SUCCESS) {
+      setIsOpenOffer(false);
+      toast.success("Teklif verildi.", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img src={buyLogo} />,
+      });
+      dispatch(getGivenOffers());
+    }
+  }, [offer]);
+
+  useEffect(() => {
+    if (cancelOfferState.status === REQUEST_STATUS.SUCCESS) {
+      toast.success("Teklif geri çekildi.", {
+        hideProgressBar: true,
+        autoClose: 3000,
+        icon: ({ theme, type }) => <img src={buyLogo} />,
+      });
+      setHasOffered(false);
+      setOfferId("");
+    }
+  }, [cancelOfferState]);
 
   return (
     <div>
@@ -174,13 +198,15 @@ function ProductDetails() {
                       </button>
                     ) : (
                       <>
-                        <button
-                          onClick={openOfferModal}
-                          id="offer-button"
-                          className="button-secondary"
-                        >
-                          Teklif Ver
-                        </button>
+                        {productDetails.data.isOfferable && (
+                          <button
+                            onClick={openOfferModal}
+                            id="offer-button"
+                            className="button-secondary"
+                          >
+                            Teklif Ver
+                          </button>
+                        )}
 
                         <Modal isOpen={isOpenOffer} className="offer-modal">
                           <div className="offer-modal-title-wrapper">
