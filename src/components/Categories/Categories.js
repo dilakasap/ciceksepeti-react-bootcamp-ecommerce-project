@@ -5,7 +5,7 @@ import { getCategories } from "../../redux/actions/categories";
 import "./Categories.scss";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 
-function Categories() {
+function Categories({ selectedCategory, setSelectedCategory }) {
   const dispatchCategories = useDispatch();
   useEffect(() => {
     dispatchCategories(getCategories());
@@ -15,17 +15,27 @@ function Categories() {
     <>
       {categories.status === REQUEST_STATUS.SUCCESS && (
         <div className="categories">
-          <div tabIndex="1" className="categories-item">
+          <div
+            tabIndex="1"
+            className="categories-item"
+            onClick={() => setSelectedCategory("")}
+          >
             Hepsi
           </div>
           {categories.data.map((item) => (
-            <div tabIndex="1" className="categories-item" key={item.id}>
+            <div
+              onClick={() => setSelectedCategory(item.id)}
+              tabIndex="1"
+              className="categories-item"
+              key={item.id}
+            >
               {item.title}
             </div>
           ))}
-          <div tabIndex="1" className="categories-item">
+          {/* There is no information about this logic. So I commented out.  */}
+          {/* <div tabIndex="1" className="categories-item">
             Diğer
-          </div>
+          </div> */}
         </div>
       )}
     </>
