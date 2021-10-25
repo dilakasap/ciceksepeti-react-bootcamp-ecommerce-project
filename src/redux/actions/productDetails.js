@@ -10,9 +10,11 @@ export const getProductDetails = (id) => (dispatch) => {
   const token = localStorage.getItem("AccessToken");
   console.log(token);
   axios
-    .get(`https://bootcampapi.techcs.io/api/fe/v1/product/${id}`, { headers: {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    }})
+    .get(`https://bootcampapi.techcs.io/api/fe/v1/product/${id}`, {
+      headers: {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      },
+    })
     .then((response) => {
       dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: response.data });
     })
@@ -20,5 +22,3 @@ export const getProductDetails = (id) => (dispatch) => {
       dispatch({ type: GET_PRODUCT_DETAILS_ERROR, payload: error })
     );
 };
-
-

@@ -2,6 +2,7 @@ import {
   POST_UPLOAD_IMAGE_PENDING,
   POST_UPLOAD_IMAGE_SUCCESS,
   POST_UPLOAD_IMAGE_ERROR,
+  POST_UPLOAD_IMAGE_INITIAL,
 } from "../constants/uplooadImage";
 import axios from "axios";
 export const uploadImage = (data) => (dispatch) => {
@@ -28,4 +29,8 @@ export const uploadImage = (data) => (dispatch) => {
     .catch((error) => {
       dispatch({ type: POST_UPLOAD_IMAGE_ERROR, payload: error.response.data });
     });
+};
+
+export const resetUploadImage = (data) => (dispatch) => {
+  dispatch({ type: POST_UPLOAD_IMAGE_INITIAL });
 };

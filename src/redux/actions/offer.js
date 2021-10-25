@@ -24,6 +24,5 @@ export const postOffer = (id, price) => (dispatch) => {
     );
 };
 export const resetPostOffer = (data) => (dispatch) => {
-  dispatch({ type: POST_OFFER_INITIAL});
-}
-
+  dispatch({ type: POST_OFFER_INITIAL });
+};

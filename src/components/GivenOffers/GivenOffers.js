@@ -5,7 +5,7 @@ import { putPurchase, resetPutPurchase } from "../../redux/actions/purchase";
 import Modal from "react-modal";
 import "./GivenOffers.scss";
 import { REQUEST_STATUS } from "../../helpers/Constants";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import buyLogo from "../../images/buy-logo.svg";
 function GivenOffers() {
@@ -34,7 +34,7 @@ function GivenOffers() {
       toast.success("Satın alındı.", {
         hideProgressBar: true,
         autoClose: 3000,
-        icon: ({ theme, type }) => <img src={buyLogo} />,
+        icon: ({ theme, type }) => <img alt="buylogotoastify" src={buyLogo} />,
       });
     }
   }, [purchase]);
@@ -43,6 +43,7 @@ function GivenOffers() {
   console.log(givenOffers);
   return (
     <div>
+      {/* loader */}
       {givenOffers.status === REQUEST_STATUS.PENDING && (
         <div class="loading-offer">
           <div class="dot"></div>
@@ -87,6 +88,7 @@ function GivenOffers() {
                         >
                           Satın Al
                         </button>
+                        {/* buy modal */}
                         <Modal isOpen={isOpenBuy} className="buy-modal">
                           <p className="buy-text">Satın Al</p>
                           <p className="buy-question-text">

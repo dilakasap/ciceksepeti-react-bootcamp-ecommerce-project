@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import cloud from "../../images/cloud.svg";
 import "./UploadProduct.scss";
 import { useDropzone } from "react-dropzone";
-import { uploadImage } from "../../redux/actions/uploadImage";
+import { resetUploadImage, uploadImage } from "../../redux/actions/uploadImage";
 import {
   postCreateProduct,
   resetCreateProduct,
@@ -22,7 +22,6 @@ const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 function UploadProduct() {
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
-  const [files, setFiles] = useState([]);
   const [formObject, setFormObject] = useState({
     price: "",
     imageUrl: "",
@@ -47,6 +46,12 @@ function UploadProduct() {
     isOfferable: false,
   });
   const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories);
+  const brands = useSelector((state) => state.brands);
+  const colors = useSelector((state) => state.colors);
+  const status = useSelector((state) => state.status);
+  
+
   const onDrop = useCallback((acceptedFiles) => {
     setImageFile(acceptedFiles[0]);
   }, []);
@@ -58,22 +63,22 @@ function UploadProduct() {
     accept: acceptedFileTypes,
     maxSize: 400000,
   });
+
   useEffect(() => {
-    // console.log("TEST");
-    // console.log(imageFile);
     if (imageFile === null) {
       return;
     }
     dispatch(uploadImage(imageFile));
   }, [imageFile]);
+
   const uploadedImage = useSelector((state) => state.uploadedImage);
 
   useEffect(() => {
-    if (uploadedImage.status === REQUEST_STATUS.SUCCESS) {
+    if (uploadedImage.status === REQUEST_STATUS.SUCCESS) {    
       setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
+      dispatch(resetUploadImage());  
     }
   }, [uploadedImage]);
-  // console.log(uploadedImage.data.url);
 
   const {
     register,
@@ -87,14 +92,6 @@ function UploadProduct() {
     dispatch(getColors());
     dispatch(getStatus());
   }, []);
-
-  // const handleChange =((e)=>{
-  //    setFormObject({category:e.target.value});
-  // })
-  const categories = useSelector((state) => state.categories);
-  const brands = useSelector((state) => state.brands);
-  const colors = useSelector((state) => state.colors);
-  const status = useSelector((state) => state.status);
 
   useEffect(() => {
     categories.data.map((item) => {
@@ -141,11 +138,7 @@ function UploadProduct() {
   }, [formObject.status.title]);
 
   const onSubmit = () => {
-    setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
-    const newFormObject = formObject;
-    console.log(formObject);
-    newFormObject.imageUrl = uploadedImage.data.url;
-    dispatch(postCreateProduct({ formObject: newFormObject }));
+    dispatch(postCreateProduct({ formObject: formObject }));
   };
 
   const createProduct = useSelector((state) => state.createProduct);
@@ -199,6 +192,7 @@ function UploadProduct() {
                       });
                   }}
                 />
+                {/* products selections from data */}
                 <div className="select-box-first-line">
                   <div className="select-box-first-line-category">
                     <label htmlFor="kategori">Kategori</label>
@@ -208,7 +202,6 @@ function UploadProduct() {
                         "upload-product-category-error"
                       }`}
                       name="kategori"
-                      //  className={errors.productCategory && "upload-product-category-error"}
                       {...register("productCategory", {
                         required: true,
                       })}
@@ -350,6 +343,7 @@ function UploadProduct() {
                   />
                   <span id="tl">TL</span>
                 </div>
+                {/* offer option */}
                 <div className="offer-option-wrapper">
                   <span id="offer-option">Teklif opsiyonu </span>
                   <input
@@ -366,6 +360,7 @@ function UploadProduct() {
                 </div>
               </div>
               <div className="right-side-form">
+                {/* upload image previev image  */}
                 {!formObject.imageUrl && (
                   <div className="upload-image">
                     <p id="product-image-p">Ürün Görseli</p>
@@ -381,13 +376,18 @@ function UploadProduct() {
                     </div>
                   </div>
                 )}
-                 {formObject.imageUrl && (
+                {formObject.imageUrl && (
                   <div className="uploaded-image">
                     <p id="product-image-p">Ürün Görseli</p>
                     <img src={formObject.imageUrl} alt="uploadimage" />
-                    <button id="remove-uploaded-image-button" onClick={()=>{
-                      setFormObject({ ...formObject, imageUrl: "" });
-                    }}>x</button>
+                    <button
+                      id="remove-uploaded-image-button"
+                      onClick={() => {
+                        setFormObject({ ...formObject, imageUrl: "" });
+                      }}
+                    >
+                      x
+                    </button>
                   </div>
                 )}
 

@@ -26,5 +26,5 @@ export const putPurchase = (id) => (dispatch) => {
 };
 
 export const resetPutPurchase = (data) => (dispatch) => {
-  dispatch({ type: PUT_PURCHASE_INITIAL});
-}
+  dispatch({ type: PUT_PURCHASE_INITIAL });
+};

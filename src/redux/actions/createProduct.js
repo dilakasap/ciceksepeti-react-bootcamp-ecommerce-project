@@ -54,6 +54,5 @@ export const postCreateProduct = (data) => (dispatch) => {
 };
 
 export const resetCreateProduct = (data) => (dispatch) => {
-  dispatch({ type: POST_CREATE_PRODUCT_INITIAL});
-}
-
+  dispatch({ type: POST_CREATE_PRODUCT_INITIAL });
+};

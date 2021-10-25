@@ -14,11 +14,9 @@ export const postLogin = (email, password) => (dispatch) => {
     .post("https://bootcampapi.techcs.io/api/fe/v1/authorization/signin", data)
     .then((response) => {
       dispatch({ type: POST_LOGIN_SUCCESS, payload: response.data });
-      
     })
-    
+
     .catch((error) => {
       dispatch({ type: POST_LOGIN_ERROR, payload: error.response.data });
     });
-    
 };

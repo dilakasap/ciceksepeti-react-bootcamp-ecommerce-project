@@ -14,11 +14,11 @@ import thunk from "redux-thunk";
 import { purchaseReducer } from "../reducers/purchase";
 import { rejectOfferReducer } from "../reducers/rejectOffer";
 import { acceptOfferReducer } from "../reducers/acceptOffer";
-import {offerReducer} from "../reducers/offer";
+import { offerReducer } from "../reducers/offer";
 import { cancelOfferReducer } from "../reducers/cancelOffer";
-import {uploadImageReducer} from "../reducers/uploadImage";
-import {createProductReducer} from "../reducers/createProduct";
-import {composeWithDevTools} from "redux-devtools-extension";
+import { uploadImageReducer } from "../reducers/uploadImage";
+import { createProductReducer } from "../reducers/createProduct";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = combineReducers({
   categories: categoriesReducer,
@@ -35,9 +35,12 @@ const reducers = combineReducers({
   purchase: purchaseReducer,
   rejectOffer: rejectOfferReducer,
   acceptOffer: acceptOfferReducer,
-  offer:offerReducer,
-  cancelOffer:cancelOfferReducer,
-  uploadedImage:uploadImageReducer,
-  createProduct:createProductReducer,
+  offer: offerReducer,
+  cancelOffer: cancelOfferReducer,
+  uploadedImage: uploadImageReducer,
+  createProduct: createProductReducer,
 });
-export const store = createStore(reducers,composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk))
+);
