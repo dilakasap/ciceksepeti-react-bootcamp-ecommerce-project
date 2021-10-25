@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGivenOffers, resetGivenOffers } from "../../redux/actions/givenOffers";
+import { getGivenOffers } from "../../redux/actions/givenOffers";
 import { putPurchase, resetPutPurchase } from "../../redux/actions/purchase";
 import Modal from "react-modal";
 import "./GivenOffers.scss";
@@ -8,7 +8,6 @@ import { REQUEST_STATUS } from "../../helpers/Constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import buyLogo from "../../images/buy-logo.svg";
-import { resetProductDetails } from "../../redux/actions/productDetails";
 function GivenOffers() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,7 +28,7 @@ function GivenOffers() {
   const purchase = useSelector((state)=> state.purchase);
   useEffect(() => {
     if (purchase.status === REQUEST_STATUS.SUCCESS) {
-      dispatch(resetPutPurchase);
+      dispatch(resetPutPurchase());
       dispatch(getGivenOffers());
       closeBuyModal();
       toast.success("Satın alındı.", {

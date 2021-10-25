@@ -2,6 +2,7 @@ import {
   POST_OFFER_PENDING,
   POST_OFFER_SUCCESS,
   POST_OFFER_ERROR,
+  POST_OFFER_INITIAL,
 } from "../constants/offer";
 import axios from "axios";
 
@@ -22,3 +23,7 @@ export const postOffer = (id, price) => (dispatch) => {
       dispatch({ type: POST_OFFER_ERROR, payload: error.response.data })
     );
 };
+export const resetPostOffer = (data) => (dispatch) => {
+  dispatch({ type: POST_OFFER_INITIAL});
+}
+
