@@ -2,6 +2,7 @@ import {
   GET_PRODUCT_DETAILS_PENDING,
   GET_PRODUCT_DETAILS_SUCCESS,
   GET_PRODUCT_DETAILS_ERROR,
+  GET_PRODUCT_DETAILS_INITIAL,
 } from "../constants/productDetails";
 import axios from "axios";
 
@@ -20,3 +21,7 @@ export const getProductDetails = (id) => (dispatch) => {
       dispatch({ type: GET_PRODUCT_DETAILS_ERROR, payload: error })
     );
 };
+
+export const resetProductDetails = (data) => (dispatch) => {
+  dispatch({ type: GET_PRODUCT_DETAILS_INITIAL});
+}

@@ -2,6 +2,7 @@ import {
   GET_GIVEN_OFFERS_PENDING,
   GET_GIVEN_OFFERS_SUCCESS,
   GET_GIVEN_OFFERS_ERROR,
+  GET_GIVEN_OFFERS_INITIAL,
 } from "../constants/givenOffers";
 import axios from "axios";
 export const getGivenOffers = () => (dispatch) => {
@@ -19,3 +20,7 @@ export const getGivenOffers = () => (dispatch) => {
       dispatch({ type: GET_GIVEN_OFFERS_ERROR, payload: error })
     );
 };
+
+export const resetGivenOffers = (data) => (dispatch) => {
+  dispatch({ type: GET_GIVEN_OFFERS_INITIAL});
+}

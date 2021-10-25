@@ -2,6 +2,7 @@ import {
   GET_PRODUCT_DETAILS_PENDING,
   GET_PRODUCT_DETAILS_SUCCESS,
   GET_PRODUCT_DETAILS_ERROR,
+  GET_PRODUCT_DETAILS_INITIAL,
 } from "../constants/productDetails";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 const initial_state = {
@@ -11,6 +12,8 @@ const initial_state = {
 };
 export const productDetailsReducer = (state = initial_state, action) => {
   switch (action.type) {
+    case GET_PRODUCT_DETAILS_INITIAL:
+      return { state, status: REQUEST_STATUS.PENDING };
     case GET_PRODUCT_DETAILS_PENDING:
       return { ...state, status: REQUEST_STATUS.PENDING };
     case GET_PRODUCT_DETAILS_SUCCESS:

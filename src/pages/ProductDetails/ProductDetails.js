@@ -1,14 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getProductDetails } from "../../redux/actions/productDetails";
+import {
+  getProductDetails,
+  resetProductDetails,
+} from "../../redux/actions/productDetails";
 import Header from "../../components/Header/Header";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 import Modal from "react-modal";
 import logox from "../../images/logox.svg";
 import "./ProductDetails.scss";
-import { putPurchase } from "../../redux/actions/purchase";
-import { getGivenOffers } from "../../redux/actions/givenOffers";
+import { putPurchase, resetPutPurchase } from "../../redux/actions/purchase";
+import {
+  getGivenOffers,
+  resetGivenOffers,
+} from "../../redux/actions/givenOffers";
 import { postOffer } from "../../redux/actions/offer";
 import { cancelOffer } from "../../redux/actions/cancelOffer";
 import { ToastContainer, toast } from "react-toastify";
@@ -86,7 +92,6 @@ function ProductDetails() {
       ) {
         setHasOffered(true);
         setOfferId(offer.id);
-
       }
     });
   }, [givenOffers]);
@@ -143,6 +148,22 @@ function ProductDetails() {
               <div className="product-details-name">
                 {productDetails.data.title}
               </div>
+              <div className="mobile-prices">
+                <div className="product-details-price-mobile">
+                  {productDetails.data.price} TL
+                </div>
+                {productDetails.data.isOfferable &&
+                  hasOffered &&
+                  givenOffers.data.map(
+                    (item) =>
+                      item.product.id === productDetails.data.id && (
+                        <div className="given-offers-price-mobile">
+                          <span>Verilen Teklif: </span>
+                          {item.offeredPrice} TL
+                        </div>
+                      )
+                  )}
+              </div>
               <div className="product-details-brand">
                 <span>Marka:</span>
                 {productDetails.data.brand.title}
@@ -158,6 +179,18 @@ function ProductDetails() {
               <div className="product-details-price">
                 {productDetails.data.price} TL
               </div>
+
+              {productDetails.data.isOfferable &&
+                hasOffered &&
+                givenOffers.data.map(
+                  (item) =>
+                    item.product.id === productDetails.data.id && (
+                      <div className="given-offers-price">
+                        <span>Verilen Teklif: </span>
+                        {item.offeredPrice} TL
+                      </div>
+                    )
+                )}
               <div className="product-details-buttons">
                 {productDetails.data.isSold ? (
                   <div className="bought-product">Bu Ürün Satışta Değil</div>
@@ -188,11 +221,12 @@ function ProductDetails() {
                         </button>
                       </div>
                     </Modal>
-                    <ToastContainer />
+
                     {productDetails.data.isOfferable && hasOffered ? (
                       <button
                         onClick={cancelOfferButton}
                         className="button-secondary"
+                        id="cancel-offer-button"
                       >
                         Teklifi Geri Çek
                       </button>
