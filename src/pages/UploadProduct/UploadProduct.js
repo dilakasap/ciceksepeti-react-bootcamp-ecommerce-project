@@ -22,7 +22,7 @@ const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 function UploadProduct() {
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
-  const [files,setFiles]=useState([]);
+  const [files, setFiles] = useState([]);
   const [formObject, setFormObject] = useState({
     price: "",
     imageUrl: "",
@@ -49,11 +49,7 @@ function UploadProduct() {
   const dispatch = useDispatch();
   const onDrop = useCallback((acceptedFiles) => {
     setImageFile(acceptedFiles[0]);
-    Object.assign(acceptedFiles[0], {
-      preview: URL.createObjectURL(acceptedFiles[0]),
-    })
-
-  }, [])
+  }, []);
 
   const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
@@ -71,6 +67,12 @@ function UploadProduct() {
     dispatch(uploadImage(imageFile));
   }, [imageFile]);
   const uploadedImage = useSelector((state) => state.uploadedImage);
+
+  useEffect(() => {
+    if (uploadedImage.status === REQUEST_STATUS.SUCCESS) {
+      setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
+    }
+  }, [uploadedImage]);
   // console.log(uploadedImage.data.url);
 
   const {
@@ -364,19 +366,30 @@ function UploadProduct() {
                 </div>
               </div>
               <div className="right-side-form">
-                <div className="upload-image">
-                  <p id="product-image-p">Ürün Görseli</p>
-                  <div className="image-area" {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <img src={cloud} alt="cloud" />
-                    <p id="info-p">Sürükleyip bırakarak yükle</p>
-                    <p>veya</p>
-                    <button id="choose-image-button" onClick={open}>
-                      Görsel Seçin
-                    </button>
-                    <p>PNG ve JPEG Dosya boyutu max. 100kb</p>
+                {!formObject.imageUrl && (
+                  <div className="upload-image">
+                    <p id="product-image-p">Ürün Görseli</p>
+                    <div className="image-area" {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <img src={cloud} alt="cloud" />
+                      <p id="info-p">Sürükleyip bırakarak yükle</p>
+                      <p>veya</p>
+                      <button id="choose-image-button" onClick={open}>
+                        Görsel Seçin
+                      </button>
+                      <p>PNG ve JPEG Dosya boyutu max. 100kb</p>
+                    </div>
                   </div>
-                </div>
+                )}
+                 {formObject.imageUrl && (
+                  <div className="uploaded-image">
+                    <p id="product-image-p">Ürün Görseli</p>
+                    <img src={formObject.imageUrl} alt="uploadimage" />
+                    <button id="remove-uploaded-image-button" onClick={()=>{
+                      setFormObject({ ...formObject, imageUrl: "" });
+                    }}>x</button>
+                  </div>
+                )}
 
                 <div className="submit-button">
                   <button id="upload-submit-button" className="button">
