@@ -50,7 +50,6 @@ function UploadProduct() {
   const brands = useSelector((state) => state.brands);
   const colors = useSelector((state) => state.colors);
   const status = useSelector((state) => state.status);
-  
 
   const onDrop = useCallback((acceptedFiles) => {
     setImageFile(acceptedFiles[0]);
@@ -74,9 +73,9 @@ function UploadProduct() {
   const uploadedImage = useSelector((state) => state.uploadedImage);
 
   useEffect(() => {
-    if (uploadedImage.status === REQUEST_STATUS.SUCCESS) {    
+    if (uploadedImage.status === REQUEST_STATUS.SUCCESS) {
       setFormObject({ ...formObject, imageUrl: uploadedImage.data.url });
-      dispatch(resetUploadImage());  
+      dispatch(resetUploadImage());
     }
   }, [uploadedImage]);
 

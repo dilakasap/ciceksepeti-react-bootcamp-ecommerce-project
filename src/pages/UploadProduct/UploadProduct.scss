@@ -51,7 +51,7 @@
 }
 .description-input {
   height: 9.2rem;
-  resize:none;
+  resize: none;
 }
 .select-box-second-line {
   display: flex;
@@ -93,7 +93,7 @@ option {
   width: 23.6rem;
   display: flex;
   flex-direction: column;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
 #tl {
   position: absolute;
@@ -109,7 +109,7 @@ option {
   color: $small-text;
   position: relative;
   display: inline-block;
-  margin-right:8.9rem;
+  margin-right: 8.9rem;
 }
 .toggle {
   -webkit-appearance: none;
@@ -124,7 +124,7 @@ option {
   outline: none;
   border: none;
   cursor: pointer;
-  background-color:$toggle-background;
+  background-color: $toggle-background;
   transition: background-color ease 0.3s;
 }
 
@@ -140,19 +140,17 @@ option {
   top: 0.2rem;
   border-radius: 50%;
   white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
 }
 
 .toggle:checked {
-  background-color:$blue;
-  
+  background-color: $blue;
 }
 
 .toggle:checked:before {
   left: 2.2rem;
 }
-
 
 #product-image-p {
   font-size: 2.4rem;
@@ -217,28 +215,29 @@ option {
   background-color: $light-red;
   border-color: $red;
 }
-.uploaded-image{
+.uploaded-image {
   position: relative;
-  img{
+  img {
     width: 11.2rem;
     height: 11.2rem;
   }
 }
-#remove-uploaded-image-button{
+#remove-uploaded-image-button {
   display: flex;
   border-radius: 50%;
   width: 1.6rem;
   height: 1.6rem;
-  border:none;
-  background-color:$text-color1;
-  color:$white;
+  border: none;
+  background-color: $text-color1;
+  color: $white;
   position: absolute;
-  top:5.1rem;
-  left:10.2rem;
+  top: 5.1rem;
+  left: 10.2rem;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+//media queries
 @media screen and (max-width: 1535px) {
   .upload-product-container {
     margin: 2rem 16rem;
