@@ -70,7 +70,6 @@
   font-size: 2.5rem;
   font-weight: 700;
   color: $text-color1;
-  margin-bottom: 3rem;
 }
 .product-details-buttons {
   display: flex;
@@ -82,6 +81,10 @@
   margin-right: 1rem;
 }
 #offer-button {
+  max-width: 23.5rem;
+  height: 4.5rem;
+}
+#cancel-offer-button{
   max-width: 23.5rem;
   height: 4.5rem;
 }
@@ -162,6 +165,9 @@
     height: 5rem;
     border-radius: 0.8rem;
   }
+}
+.given-offers-price{
+  margin-bottom: 3rem;
 }
 .offer-modal-upside {
   display: flex;
@@ -285,6 +291,12 @@ input::-webkit-inner-spin-button {
 .Toastify__close-button{
   display: none;
 }
+.product-details-price-mobile{
+  display: none;
+}
+.given-offers-price-mobile{
+  display: none;
+}
 
 @media screen and (max-width: 1535px) {
   .detail-card-container {
@@ -329,8 +341,36 @@ input::-webkit-inner-spin-button {
     margin-bottom: 1rem;
   }
   .product-details-price {
-    font-size: 2rem;
+    display: none;
+  }
+  .mobile-prices{
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 1rem;
+    align-items: center;
+  }
+  .product-details-price-mobile{
+    display: initial;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-color1;
+  }
+  .given-offers-price{
+    display: none;
+  }
+  .given-offers-price-mobile{
+    display: initial;
+    width:17rem;
+    padding:0.8rem 1rem;
+    background-color: $home-bg;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    margin-right: 1rem;
+    span{
+      color:$small-text;
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
   }
   .product-details-color {
     margin-bottom: 1rem;

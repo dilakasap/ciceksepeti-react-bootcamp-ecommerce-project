@@ -30,7 +30,7 @@ function ReceivedOffers() {
               <div className="given-offers-title">{item.product.title}</div>
               <div className="given-offers-price">
                 <span>Alınan Teklif: </span>
-                {item.offeredPrice}
+                {item.offeredPrice} TL
               </div>
             </div>
             <div className="given-offers-right-side">

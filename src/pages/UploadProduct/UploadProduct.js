@@ -19,6 +19,7 @@ import { useHistory } from "react-router";
 
 const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 
+
 function UploadProduct() {
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
@@ -330,6 +331,7 @@ function UploadProduct() {
                 <div id="product-detail-form-price-input">
                   <label htmlFor="fiyat">Fiyat</label>
                   <input
+                    id={errors.productName && "upload-product-name-error"}
                     {...register("productPrice", {
                       required: "true",
                     })}

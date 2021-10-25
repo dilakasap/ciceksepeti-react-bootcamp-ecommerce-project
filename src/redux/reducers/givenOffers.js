@@ -3,6 +3,7 @@ import {
   GET_GIVEN_OFFERS_PENDING,
   GET_GIVEN_OFFERS_SUCCESS,
   GET_GIVEN_OFFERS_ERROR,
+  GET_GIVEN_OFFERS_INITIAL,
 } from "../constants/givenOffers";
 const initial_state = {
   data: [],
@@ -11,6 +12,8 @@ const initial_state = {
 };
 export const givenOffersReducer = (state = initial_state, action) => {
   switch (action.type) {
+    case GET_GIVEN_OFFERS_INITIAL:
+      return { state, status: REQUEST_STATUS.PENDING };
     case GET_GIVEN_OFFERS_PENDING:
       return { ...state, status: REQUEST_STATUS.PENDING };
     case GET_GIVEN_OFFERS_SUCCESS:

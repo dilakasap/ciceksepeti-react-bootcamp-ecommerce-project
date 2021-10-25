@@ -2,6 +2,7 @@ import {
   PUT_PURCHASE_PENDING,
   PUT_PURCHASE_SUCCESS,
   PUT_PURCHASE_ERROR,
+  PUT_PURCHASE_INITIAL,
 } from "../constants/purchase";
 import axios from "axios";
 
@@ -23,3 +24,7 @@ export const putPurchase = (id) => (dispatch) => {
       dispatch({ type: PUT_PURCHASE_ERROR, payload: error.response.data })
     );
 };
+
+export const resetPutPurchase = (data) => (dispatch) => {
+  dispatch({ type: PUT_PURCHASE_INITIAL});
+}
