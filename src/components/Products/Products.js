@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 import { getProducts } from "../../redux/actions/products";
-import "./Product.scss";
+import "./Products.scss";
 
 function Products({ selectedCategory }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -19,7 +19,13 @@ function Products({ selectedCategory }) {
   
   return (
     <>
-      {products.status === REQUEST_STATUS.PENDING && <div>Loading...</div>}
+      {products.status === REQUEST_STATUS.PENDING && <div class="loading">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>}
       {products.status === REQUEST_STATUS.SUCCESS && (
         <div className="product-container">
           {products.data
