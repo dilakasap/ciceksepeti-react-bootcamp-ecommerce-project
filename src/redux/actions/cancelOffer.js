@@ -2,6 +2,7 @@ import {
   DELETE_CANCEL_OFFER_PENDING,
   DELETE_CANCEL_OFFER_SUCCESS,
   DELETE_CANCEL_OFFER_ERROR,
+  DELETE_CANCEL_OFFER_INITIAL,
 } from "../constants/cancelOffer";
 import axios from "axios";
 
@@ -23,3 +24,6 @@ export const cancelOffer = (id) => (dispatch) => {
       dispatch({ type: DELETE_CANCEL_OFFER_ERROR, payload: error.response.data })
     );
 };
+export const resetCancelOffer = (data) => (dispatch) => {
+  dispatch({ type: DELETE_CANCEL_OFFER_INITIAL});
+}

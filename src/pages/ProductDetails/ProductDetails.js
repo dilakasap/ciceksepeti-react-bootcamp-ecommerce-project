@@ -1,22 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import {
-  getProductDetails,
-  resetProductDetails,
-} from "../../redux/actions/productDetails";
+import { getProductDetails } from "../../redux/actions/productDetails";
 import Header from "../../components/Header/Header";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 import Modal from "react-modal";
 import logox from "../../images/logox.svg";
 import "./ProductDetails.scss";
 import { putPurchase, resetPutPurchase } from "../../redux/actions/purchase";
-import {
-  getGivenOffers,
-  resetGivenOffers,
-} from "../../redux/actions/givenOffers";
-import { postOffer } from "../../redux/actions/offer";
-import { cancelOffer } from "../../redux/actions/cancelOffer";
+import { getGivenOffers } from "../../redux/actions/givenOffers";
+import { postOffer, resetPostOffer } from "../../redux/actions/offer";
+import { cancelOffer, resetCancelOffer } from "../../redux/actions/cancelOffer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import buyLogo from "../../images/buy-logo.svg";
@@ -105,6 +99,7 @@ function ProductDetails() {
         icon: ({ theme, type }) => <img src={buyLogo} />,
       });
       dispatch(getProductDetails(id));
+      dispatch(resetPutPurchase());
     }
   }, [purchase]);
 
@@ -117,6 +112,7 @@ function ProductDetails() {
         icon: ({ theme, type }) => <img src={buyLogo} />,
       });
       dispatch(getGivenOffers());
+      dispatch(resetPostOffer());
     }
   }, [offer]);
 
@@ -129,6 +125,7 @@ function ProductDetails() {
       });
       setHasOffered(false);
       setOfferId("");
+      dispatch(resetCancelOffer());
     }
   }, [cancelOfferState]);
 

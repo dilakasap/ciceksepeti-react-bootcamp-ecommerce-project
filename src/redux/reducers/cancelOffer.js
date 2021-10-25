@@ -2,6 +2,7 @@ import {
   DELETE_CANCEL_OFFER_PENDING,
   DELETE_CANCEL_OFFER_SUCCESS,
   DELETE_CANCEL_OFFER_ERROR,
+  DELETE_CANCEL_OFFER_INITIAL,
 } from "../constants/cancelOffer";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 const initial_state = {
@@ -11,6 +12,8 @@ const initial_state = {
 };
 export const cancelOfferReducer = (state = initial_state, action) => {
   switch (action.type) {
+    case DELETE_CANCEL_OFFER_INITIAL:
+      return { state, status: REQUEST_STATUS.PENDING };
     case DELETE_CANCEL_OFFER_PENDING:
       return { ...state, status: REQUEST_STATUS.PENDING };
     case DELETE_CANCEL_OFFER_SUCCESS:

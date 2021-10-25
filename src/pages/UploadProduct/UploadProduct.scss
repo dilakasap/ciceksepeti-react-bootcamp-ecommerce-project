@@ -217,6 +217,28 @@ option {
   background-color: $light-red;
   border-color: $red;
 }
+.uploaded-image{
+  position: relative;
+  img{
+    width: 11.2rem;
+    height: 11.2rem;
+  }
+}
+#remove-uploaded-image-button{
+  display: flex;
+  border-radius: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  border:none;
+  background-color:$text-color1;
+  color:$white;
+  position: absolute;
+  top:5.1rem;
+  left:10.2rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 @media screen and (max-width: 1535px) {
   .upload-product-container {
     margin: 2rem 16rem;
