@@ -14,6 +14,7 @@ import { cancelOffer, resetCancelOffer } from "../../redux/actions/cancelOffer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import buyLogo from "../../images/buy-logo.svg";
+import { useForm } from "react-hook-form";
 
 function ProductDetails() {
   const radio1 = useRef(null);
@@ -68,11 +69,18 @@ function ProductDetails() {
     dispatch(putPurchase(id));
   };
   const postOfferPrice = () => {
-    dispatch(postOffer(id, Number(price)));
+    dispatch(postOffer(id, Number(price).toFixed(2)));
   };
   const cancelOfferButton = () => {
     dispatch(cancelOffer(offerId));
   };
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   useEffect(() => {
     dispatch(getGivenOffers());
   }, [dispatch]);
@@ -269,6 +277,7 @@ function ProductDetails() {
                                 </div>
                               </div>
                             </div>
+                            <form onSubmit={handleSubmit(postOfferPrice)}>
                             <div
                               className="offer-modal-options"
                               onClick={enableRadio}
@@ -296,7 +305,7 @@ function ProductDetails() {
                                   }}
                                 />
                                 <label htmlFor="">
-                                  %30'si Kadar Teklif Ver
+                                  %30'u Kadar Teklif Ver
                                 </label>
                               </div>
                               <div className="offer-modal-radio">
@@ -309,7 +318,7 @@ function ProductDetails() {
                                   }}
                                 />
                                 <label htmlFor="">
-                                  %40'si Kadar Teklif Ver
+                                  %40'ı Kadar Teklif Ver
                                 </label>
                               </div>
                             </div>
@@ -320,6 +329,10 @@ function ProductDetails() {
                                 value={price}
                                 placeholder="Teklif Belirle"
                                 onFocus={disableRadio}
+                                id={errors.price && "price-error"}
+                                {...register('price', {
+                                  min:0,
+                                })}
                                 onChange={(e) => {
                                   setPrice(e.target.value);
                                 }}
@@ -328,13 +341,13 @@ function ProductDetails() {
                             </div>
                             <div className="offer-modal-button">
                               <button
-                                onClick={postOfferPrice}
                                 id="offer-modal-accept-button"
                                 className="button"
                               >
                                 Onayla
                               </button>
                             </div>
+                            </form>
                           </div>
                         </Modal>
                       </>
