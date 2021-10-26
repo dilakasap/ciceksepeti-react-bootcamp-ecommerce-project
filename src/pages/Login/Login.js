@@ -20,6 +20,7 @@ function Login() {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login);
 
+  // toastify and localstorage set accesstoken
   useEffect(() => {
     if (login.status === REQUEST_STATUS.SUCCESS) {
       localStorage.setItem("AccessToken", login.data.access_token);
