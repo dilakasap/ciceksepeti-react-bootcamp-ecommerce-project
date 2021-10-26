@@ -332,6 +332,7 @@ function UploadProduct() {
                     id={errors.productName && "upload-product-name-error"}
                     {...register("productPrice", {
                       required: "true",
+                      min:0,
                     })}
                     className="input"
                     type="number"
