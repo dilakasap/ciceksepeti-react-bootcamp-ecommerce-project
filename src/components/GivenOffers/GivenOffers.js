@@ -88,7 +88,7 @@ function GivenOffers() {
                         >
                           Satın Al
                         </button>
-                        {/* buy modal */}
+                        {/* if the offer accepted open buy modal */}
                         <Modal isOpen={isOpenBuy} className="buy-modal">
                           <p className="buy-text">Satın Al</p>
                           <p className="buy-question-text">
