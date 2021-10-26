@@ -1,9 +1,34 @@
-# Getting Started with Create React App
+<h1>Çiçeksepeti React Bootcamp Graduation Project React E-Commerce App</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a graduation project of Çiçeksepeti React Bootcamp.This is an e-Commerce website which you can buy, sell and offer second hand products.<br>
+Made by React and Redux
+<h4>For live demo</h4>
 
-## Available Scripts
+<h2>Used Techologies</h2>
+<ul>
+  <li>HTML </li>
+  <li>SASS </li>
+  <li>JavaScript </li>
+  <li>React </li>
+  <li>Redux </li>
+  <li>Axios </li>
+  <li>React-Router </li>
+  <li>Redux-Thunk </li>
+  <li>Deployed by Vercel </li>
+</ul>
+<h3>Libraries</h3>
+<ul>
+  <li>React-Tabs </li>
+  <li> React Modals </li>
+  <li>Dropzone </li>
+  <li>React </li>
+  <li>React-toastify </li>
+  <li>React Hook Form </li>
+</ul>
+<h4>Known Issues</h4>
+Login and Signup Page submit button doesn't work with enter.
 
+<h2>Installation</h2>
 In the project directory, you can run:
 
 ### `yarn start`
@@ -29,42 +54,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+<h2>Screenshots</h2>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image](https://user-images.githubusercontent.com/87365494/138853811-086bcd68-800e-4791-9972-f607ffc86628.png)
+![image](https://user-images.githubusercontent.com/87365494/138852589-7c0aa2f8-02df-490a-b5f1-03403a0c5231.png)
+![image](https://user-images.githubusercontent.com/87365494/138853192-a091570d-656b-4dc5-9e38-fb2dcc9395cd.png)
+![image](https://user-images.githubusercontent.com/87365494/138853299-0ecb76ff-1586-4a37-83dc-3aeba6379c1e.png)
+![image](https://user-images.githubusercontent.com/87365494/138854034-0c55bbc5-eaa0-4bb6-b59d-425aea587981.png)
+![image](https://user-images.githubusercontent.com/87365494/138853738-5aefe42d-56ab-4853-b91f-610f8b55c1a9.png)
+![image](https://user-images.githubusercontent.com/87365494/138854276-84cfdf61-7d7f-4f44-ace6-9fb438b9bb55.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
