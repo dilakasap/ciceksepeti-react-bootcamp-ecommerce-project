@@ -167,9 +167,7 @@
     border-radius: 0.8rem;
   }
 }
-.given-offers-price {
-  margin-bottom: 3rem;
-}
+
 .offer-modal-upside {
   display: flex;
   width: 100%;
@@ -290,6 +288,19 @@ input::-webkit-inner-spin-button {
 .product-details-price-mobile {
   display: none;
 }
+.product-details-given-offer-price {
+  width: 23rem;
+  padding: 0.8rem 1rem;
+  background-color: $home-bg;
+  border-radius: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  margin-top: -3rem;
+  span {
+    color: $small-text;
+    font-weight: 400;
+  }
+}
 .given-offers-price-mobile {
   display: none;
 }
@@ -355,7 +366,7 @@ input::-webkit-inner-spin-button {
     font-weight: 700;
     color: $text-color1;
   }
-  .given-offers-price {
+  .product-details-given-offer-price {
     display: none;
   }
   .given-offers-price-mobile {

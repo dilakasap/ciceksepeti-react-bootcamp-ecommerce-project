@@ -194,7 +194,7 @@ function ProductDetails() {
                 givenOffers.data.map(
                   (item) =>
                     item.product.id === productDetails.data.id && (
-                      <div className="given-offers-price">
+                      <div className="product-details-given-offer-price">
                         <span>Verilen Teklif: </span>
                         {item.offeredPrice} TL
                       </div>
