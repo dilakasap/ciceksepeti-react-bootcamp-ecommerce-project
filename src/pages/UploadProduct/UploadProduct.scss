@@ -105,6 +105,7 @@ option {
   display: flex;
   align-items: center;
 }
+//offer option toggle
 #offer-option {
   color: $small-text;
   position: relative;
@@ -151,6 +152,7 @@ option {
 .toggle:checked:before {
   left: 2.2rem;
 }
+//offer option toggle ends
 
 #product-image-p {
   font-size: 2.4rem;
@@ -186,6 +188,7 @@ option {
   display: flex;
   justify-content: flex-end;
 }
+// error colors for the validations
 #upload-submit-button {
   width: 31.5rem;
 }
@@ -215,6 +218,7 @@ option {
   background-color: $light-red;
   border-color: $red;
 }
+//previev uploaded image
 .uploaded-image {
   position: relative;
   img {
@@ -222,6 +226,7 @@ option {
     height: 11.2rem;
   }
 }
+// x button for the delete image 
 #remove-uploaded-image-button {
   display: flex;
   border-radius: 50%;
