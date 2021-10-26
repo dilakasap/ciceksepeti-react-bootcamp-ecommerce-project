@@ -7,8 +7,6 @@
   margin-top: 3rem;
   border-bottom: 0.1rem solid $categories-border;
   border-collapse: collapse;
-  
- 
 }
 .categories-item {
   color: $text-color1;
@@ -19,14 +17,15 @@
   padding-bottom: 1.6rem;
   cursor: pointer;
   border-bottom: 0.1rem solid $home-bg;
- 
+
   &:focus {
     color: $blue;
     border-bottom: 0.1rem solid $blue;
-    bottom:-0.1rem;
+    bottom: -0.1rem;
     position: relative;
   }
 }
+//media queries
 @media screen and (max-width: 1535px) {
   .categories-item {
     font-size: 1.6rem;

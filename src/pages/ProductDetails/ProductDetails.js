@@ -74,7 +74,7 @@ function ProductDetails() {
   const cancelOfferButton = () => {
     dispatch(cancelOffer(offerId));
   };
-  
+
   const {
     register,
     handleSubmit,
@@ -278,75 +278,75 @@ function ProductDetails() {
                               </div>
                             </div>
                             <form onSubmit={handleSubmit(postOfferPrice)}>
-                            <div
-                              className="offer-modal-options"
-                              onClick={enableRadio}
-                            >
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio1}
-                                  onChange={() => {
-                                    setPrice(0.2 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %20'si Kadar Teklif Ver
-                                </label>
-                              </div>
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio2}
-                                  onChange={() => {
-                                    setPrice(0.3 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %30'u Kadar Teklif Ver
-                                </label>
-                              </div>
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio3}
-                                  onChange={() => {
-                                    setPrice(0.4 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %40'ı Kadar Teklif Ver
-                                </label>
-                              </div>
-                            </div>
-                            <div className="offer-modal-price">
-                              <input
-                                className="input"
-                                type="number"
-                                value={price}
-                                placeholder="Teklif Belirle"
-                                onFocus={disableRadio}
-                                id={errors.price && "price-error"}
-                                {...register('price', {
-                                  min:0,
-                                })}
-                                onChange={(e) => {
-                                  setPrice(e.target.value);
-                                }}
-                              />
-                              <span id="tl-text">TL</span>
-                            </div>
-                            <div className="offer-modal-button">
-                              <button
-                                id="offer-modal-accept-button"
-                                className="button"
+                              <div
+                                className="offer-modal-options"
+                                onClick={enableRadio}
                               >
-                                Onayla
-                              </button>
-                            </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio1}
+                                    onChange={() => {
+                                      setPrice(0.2 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %20'si Kadar Teklif Ver
+                                  </label>
+                                </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio2}
+                                    onChange={() => {
+                                      setPrice(0.3 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %30'u Kadar Teklif Ver
+                                  </label>
+                                </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio3}
+                                    onChange={() => {
+                                      setPrice(0.4 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %40'ı Kadar Teklif Ver
+                                  </label>
+                                </div>
+                              </div>
+                              <div className="offer-modal-price">
+                                <input
+                                  className="input"
+                                  type="number"
+                                  value={price}
+                                  placeholder="Teklif Belirle"
+                                  onFocus={disableRadio}
+                                  id={errors.price && "price-error"}
+                                  {...register("price", {
+                                    min: 0,
+                                  })}
+                                  onChange={(e) => {
+                                    setPrice(e.target.value);
+                                  }}
+                                />
+                                <span id="tl-text">TL</span>
+                              </div>
+                              <div className="offer-modal-button">
+                                <button
+                                  id="offer-modal-accept-button"
+                                  className="button"
+                                >
+                                  Onayla
+                                </button>
+                              </div>
                             </form>
                           </div>
                         </Modal>

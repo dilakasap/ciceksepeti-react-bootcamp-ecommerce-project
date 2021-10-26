@@ -13,7 +13,7 @@ function Categories({ selectedCategory, setSelectedCategory }) {
   const categories = useSelector((state) => state.categories);
   return (
     <>
-    {/* categories choices */}
+      {/* categories choices */}
       {categories.status === REQUEST_STATUS.SUCCESS && (
         <div className="categories">
           <div
