@@ -66,6 +66,7 @@ function SignUp() {
             <p className="note">Fırsatlardan yararlanmak için üye ol!</p>
             <form onSubmit={handleSubmit(onSubmit)}>
               <label>Email</label>
+              {/* email should include @ sign */}
               <input
                 className="input"
                 placeholder="Email@example.com"
@@ -80,6 +81,7 @@ function SignUp() {
                 }}
               ></input>
               <label>Şifre</label>
+              {/* password validations */}
               <input
                 className="input"
                 type="password"
