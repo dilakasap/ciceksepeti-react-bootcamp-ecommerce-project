@@ -3,6 +3,9 @@
 This project is a graduation project of Çiçeksepeti React Bootcamp.This is an e-Commerce website which you can buy, sell and offer second hand products.<br>
 Made by React and Redux
 <h4>For live demo</h4>
+https://ciceksepeti-react-bootcamp-ecommerce-project.vercel.app/
+
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=ciceksepeti-react-bootcamp-ecommerce-project)
 
 <h2>Used Techologies</h2>
 <ul>
