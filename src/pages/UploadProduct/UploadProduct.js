@@ -20,6 +20,7 @@ import { useHistory } from "react-router";
 const acceptedFileTypes = "image/jpg, image/jpeg,image/png";
 
 function UploadProduct() {
+  // object state for upload product
   const history = useHistory();
   const [imageFile, setImageFile] = useState(null);
   const [formObject, setFormObject] = useState({
@@ -92,6 +93,7 @@ function UploadProduct() {
     dispatch(getStatus());
   }, []);
 
+  // get categories for select input
   useEffect(() => {
     categories.data.map((item) => {
       if (formObject.category.title === item.title) {
@@ -103,6 +105,7 @@ function UploadProduct() {
     });
   }, [formObject.category.title]);
 
+  // get brands for select input
   useEffect(() => {
     brands.data.map((item) => {
       if (formObject.brand.title === item.title) {
@@ -114,6 +117,7 @@ function UploadProduct() {
     });
   }, [formObject.brand.title]);
 
+  // get colors for select input
   useEffect(() => {
     colors.data.map((item) => {
       if (formObject.color.title === item.title) {
@@ -125,6 +129,7 @@ function UploadProduct() {
     });
   }, [formObject.color.title]);
 
+  // get status for select input
   useEffect(() => {
     status.data.map((item) => {
       if (formObject.status.title === item.title) {
@@ -149,6 +154,7 @@ function UploadProduct() {
   }, [createProduct]);
 
   return (
+    // upload product form
     <div className="upload-product">
       <Header />
       <div className="upload-product-container">
@@ -332,7 +338,7 @@ function UploadProduct() {
                     id={errors.productName && "upload-product-name-error"}
                     {...register("productPrice", {
                       required: "true",
-                      min:0,
+                      min: 0,
                     })}
                     className="input"
                     type="number"
