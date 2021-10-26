@@ -7,7 +7,7 @@ import "./Offers.scss";
 
 function Offers() {
   return (
-    // given offer- received offers tab
+    // given offers- received offers tab
     <div className="offers-tab">
       <Tabs defaultIndex={0}>
         <TabList>

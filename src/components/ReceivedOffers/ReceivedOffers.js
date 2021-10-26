@@ -23,6 +23,7 @@ function ReceivedOffers() {
   }, [acceptOffer, rejectOffer]);
   return (
     <div>
+      {/* loader */}
       {receivedOffers.status === REQUEST_STATUS.PENDING && (
         <div class="loading-offer">
           <div class="dot"></div>
