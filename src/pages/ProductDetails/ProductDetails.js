@@ -69,7 +69,7 @@ function ProductDetails() {
     dispatch(putPurchase(id));
   };
   const postOfferPrice = () => {
-    dispatch(postOffer(id, Number(price).toFixed(2)));
+    dispatch(postOffer(id, Number(price)));
   };
   const cancelOfferButton = () => {
     dispatch(cancelOffer(offerId));
