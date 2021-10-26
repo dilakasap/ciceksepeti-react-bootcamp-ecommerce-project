@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import account from "../../images/account.svg";
 import "./Email.scss";
 function Email() {
-  // get the email infro for the account
+  // get the email info from localstorage for the account page
   const [email, setEmail] = useState("");
   useEffect(() => {
     setEmail(localStorage.getItem("email"));
