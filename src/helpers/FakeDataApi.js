@@ -1,3 +1,4 @@
+//fake data that I used before api call
 export const getCategoriesApi = () => {
   return [
     {

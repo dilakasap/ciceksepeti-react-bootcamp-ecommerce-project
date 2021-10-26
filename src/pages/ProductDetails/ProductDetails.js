@@ -139,10 +139,17 @@ function ProductDetails() {
   }, [cancelOfferState]);
 
   return (
+    // get product details
     <div>
       <Header />
       {productDetails.status === REQUEST_STATUS.PENDING && (
-        <div>Loading...</div>
+        <div class="loading-offer">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
       )}
       {productDetails.status === REQUEST_STATUS.SUCCESS && (
         <div className="product-detail-container">
@@ -194,7 +201,7 @@ function ProductDetails() {
                 givenOffers.data.map(
                   (item) =>
                     item.product.id === productDetails.data.id && (
-                      <div className="given-offers-price">
+                      <div className="product-details-given-offer-price">
                         <span>Verilen Teklif: </span>
                         {item.offeredPrice} TL
                       </div>

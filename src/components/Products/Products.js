@@ -6,7 +6,7 @@ import { getProducts } from "../../redux/actions/products";
 import "./Products.scss";
 
 function Products({ selectedCategory }) {
-  const dispatch = (Products = useDispatch());
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
