@@ -2,6 +2,7 @@ import {
   POST_UPLOAD_IMAGE_PENDING,
   POST_UPLOAD_IMAGE_SUCCESS,
   POST_UPLOAD_IMAGE_ERROR,
+  POST_UPLOAD_IMAGE_INITIAL,
 } from "../constants/uplooadImage";
 import { REQUEST_STATUS } from "../../helpers/Constants";
 const initial_state = {
@@ -11,6 +12,8 @@ const initial_state = {
 };
 export const uploadImageReducer = (state = initial_state, action) => {
   switch (action.type) {
+    case POST_UPLOAD_IMAGE_INITIAL:
+      return { state, status: REQUEST_STATUS.PENDING };
     case POST_UPLOAD_IMAGE_PENDING:
       return { ...state, status: REQUEST_STATUS.PENDING };
     case POST_UPLOAD_IMAGE_SUCCESS:

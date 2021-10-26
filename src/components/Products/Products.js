@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { REQUEST_STATUS } from "../../helpers/Constants";
@@ -6,7 +6,6 @@ import { getProducts } from "../../redux/actions/products";
 import "./Products.scss";
 
 function Products({ selectedCategory }) {
-  const [filteredData, setFilteredData] = useState([]);
   const dispatch = (Products = useDispatch());
   useEffect(() => {
     dispatch(getProducts());
@@ -16,18 +15,21 @@ function Products({ selectedCategory }) {
   const toProductDetails = (id) => {
     history.push("/products/" + id);
   };
-  
+
   return (
     <>
-      {products.status === REQUEST_STATUS.PENDING && <div class="loading">
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-</div>}
+      {products.status === REQUEST_STATUS.PENDING && (
+        <div class="loading">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      )}
       {products.status === REQUEST_STATUS.SUCCESS && (
         <div className="product-container">
+          {/* map products for the home page */}
           {products.data
             .filter((product) => {
               if (
@@ -44,7 +46,7 @@ function Products({ selectedCategory }) {
                 key={item.id}
               >
                 <div className="image">
-                  <img src={item.imageUrl}></img>
+                  <img alt="itemimage" src={item.imageUrl}></img>
                 </div>
                 <div className="top-info">
                   <div className="product-title">{item.brand.title}</div>

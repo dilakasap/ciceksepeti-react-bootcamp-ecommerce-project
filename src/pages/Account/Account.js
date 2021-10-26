@@ -1,18 +1,18 @@
-import React from 'react'
+import React from "react";
 import Header from "../../components/Header/Header";
-import Email from '../../components/Email/Email';
-import Offers from '../../components/Offers/Offers';
+import Email from "../../components/Email/Email";
+import Offers from "../../components/Offers/Offers";
 import "./Account.scss";
 function Account() {
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="account-container">
-      <Email/>
-      <Offers/>
+        <Email />
+        <Offers />
       </div>
     </div>
-  )
+  );
 }
 
 export default Account;

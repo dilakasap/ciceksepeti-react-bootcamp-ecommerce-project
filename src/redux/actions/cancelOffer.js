@@ -21,9 +21,12 @@ export const cancelOffer = (id) => (dispatch) => {
       dispatch({ type: DELETE_CANCEL_OFFER_SUCCESS, payload: response.data });
     })
     .catch((error) =>
-      dispatch({ type: DELETE_CANCEL_OFFER_ERROR, payload: error.response.data })
+      dispatch({
+        type: DELETE_CANCEL_OFFER_ERROR,
+        payload: error.response.data,
+      })
     );
 };
 export const resetCancelOffer = (data) => (dispatch) => {
-  dispatch({ type: DELETE_CANCEL_OFFER_INITIAL});
-}
+  dispatch({ type: DELETE_CANCEL_OFFER_INITIAL });
+};

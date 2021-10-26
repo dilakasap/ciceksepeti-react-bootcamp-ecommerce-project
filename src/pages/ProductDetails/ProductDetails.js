@@ -11,9 +11,11 @@ import { putPurchase, resetPutPurchase } from "../../redux/actions/purchase";
 import { getGivenOffers } from "../../redux/actions/givenOffers";
 import { postOffer, resetPostOffer } from "../../redux/actions/offer";
 import { cancelOffer, resetCancelOffer } from "../../redux/actions/cancelOffer";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import buyLogo from "../../images/buy-logo.svg";
+import { useForm } from "react-hook-form";
+
 function ProductDetails() {
   const radio1 = useRef(null);
   const radio2 = useRef(null);
@@ -55,10 +57,10 @@ function ProductDetails() {
   const givenOffers = useSelector((state) => state.givenOffers);
   const cancelOfferState = useSelector((state) => state.cancelOffer);
   const offer = useSelector((state) => state.offer);
-
   const dispatch = useDispatch();
   const { id } = useParams();
   const [hasOffered, setHasOffered] = useState(false);
+
   useEffect(() => {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);
@@ -72,6 +74,13 @@ function ProductDetails() {
   const cancelOfferButton = () => {
     dispatch(cancelOffer(offerId));
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   useEffect(() => {
     dispatch(getGivenOffers());
   }, [dispatch]);
@@ -96,7 +105,7 @@ function ProductDetails() {
       toast.success("Satın alındı..", {
         hideProgressBar: true,
         autoClose: 3000,
-        icon: ({ theme, type }) => <img src={buyLogo} />,
+        icon: ({ theme, type }) => <img src={buyLogo} alt="productbuylogo" />,
       });
       dispatch(getProductDetails(id));
       dispatch(resetPutPurchase());
@@ -109,7 +118,7 @@ function ProductDetails() {
       toast.success("Teklif verildi.", {
         hideProgressBar: true,
         autoClose: 3000,
-        icon: ({ theme, type }) => <img src={buyLogo} />,
+        icon: ({ theme, type }) => <img alt="productbuylogo" src={buyLogo} />,
       });
       dispatch(getGivenOffers());
       dispatch(resetPostOffer());
@@ -121,7 +130,7 @@ function ProductDetails() {
       toast.success("Teklif geri çekildi.", {
         hideProgressBar: true,
         autoClose: 3000,
-        icon: ({ theme, type }) => <img src={buyLogo} />,
+        icon: ({ theme, type }) => <img alt="productbuylogo" src={buyLogo} />,
       });
       setHasOffered(false);
       setOfferId("");
@@ -139,7 +148,10 @@ function ProductDetails() {
         <div className="product-detail-container">
           <div className="detail-card-container">
             <div className="detail-card-image">
-              <img src={productDetails.data.imageUrl}></img>
+              <img
+                alt="productdetailsimage"
+                src={productDetails.data.imageUrl}
+              ></img>
             </div>
             <div className="product-details">
               <div className="product-details-name">
@@ -200,7 +212,7 @@ function ProductDetails() {
                     >
                       Satın Al
                     </button>
-
+                    {/* Modal of buy part */}
                     <Modal isOpen={isOpenBuy} className="buy-modal">
                       <p className="buy-text">Satın Al</p>
                       <p className="buy-question-text">
@@ -238,7 +250,7 @@ function ProductDetails() {
                             Teklif Ver
                           </button>
                         )}
-
+                        {/* Modal of offer part  */}
                         <Modal isOpen={isOpenOffer} className="offer-modal">
                           <div className="offer-modal-title-wrapper">
                             <p className="offer-modal-title">Teklif Ver</p>
@@ -265,75 +277,77 @@ function ProductDetails() {
                                 </div>
                               </div>
                             </div>
-                            <div
-                              className="offer-modal-options"
-                              onClick={enableRadio}
-                            >
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio1}
-                                  onChange={() => {
-                                    setPrice(0.2 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %20'si Kadar Teklif Ver
-                                </label>
-                                {/* <div className="highlight"></div> */}
-                              </div>
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio2}
-                                  onChange={() => {
-                                    setPrice(0.3 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %30'si Kadar Teklif Ver
-                                </label>
-                                {/* <div className="highlight"></div> */}
-                              </div>
-                              <div className="offer-modal-radio">
-                                <input
-                                  type="radio"
-                                  name="radio-group"
-                                  ref={radio3}
-                                  onChange={() => {
-                                    setPrice(0.4 * productDetails.data.price);
-                                  }}
-                                />
-                                <label htmlFor="">
-                                  %40'si Kadar Teklif Ver
-                                </label>
-                                {/* <div className="highlight"></div> */}
-                              </div>
-                            </div>
-                            <div className="offer-modal-price">
-                              <input
-                                className="input"
-                                type="number"
-                                value={price}
-                                placeholder="Teklif Belirle"
-                                onFocus={disableRadio}
-                                onChange={(e) => {
-                                  setPrice(e.target.value);
-                                }}
-                              />
-                              <span id="tl-text">TL</span>
-                            </div>
-                            <div className="offer-modal-button">
-                              <button
-                                onClick={postOfferPrice}
-                                id="offer-modal-accept-button"
-                                className="button"
+                            <form onSubmit={handleSubmit(postOfferPrice)}>
+                              <div
+                                className="offer-modal-options"
+                                onClick={enableRadio}
                               >
-                                Onayla
-                              </button>
-                            </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio1}
+                                    onChange={() => {
+                                      setPrice(0.2 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %20'si Kadar Teklif Ver
+                                  </label>
+                                </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio2}
+                                    onChange={() => {
+                                      setPrice(0.3 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %30'u Kadar Teklif Ver
+                                  </label>
+                                </div>
+                                <div className="offer-modal-radio">
+                                  <input
+                                    type="radio"
+                                    name="radio-group"
+                                    ref={radio3}
+                                    onChange={() => {
+                                      setPrice(0.4 * productDetails.data.price);
+                                    }}
+                                  />
+                                  <label htmlFor="">
+                                    %40'ı Kadar Teklif Ver
+                                  </label>
+                                </div>
+                              </div>
+                              <div className="offer-modal-price">
+                                <input
+                                  className="input"
+                                  type="number"
+                                  value={price}
+                                  placeholder="Teklif Belirle"
+                                  onFocus={disableRadio}
+                                  id={errors.price && "price-error"}
+                                  {...register("price", {
+                                    min: 0,
+                                  })}
+                                  onChange={(e) => {
+                                    setPrice(e.target.value);
+                                  }}
+                                />
+                                <span id="tl-text">TL</span>
+                              </div>
+                              <div className="offer-modal-button">
+                                <button
+                                  id="offer-modal-accept-button"
+                                  className="button"
+                                >
+                                  Onayla
+                                </button>
+                              </div>
+                            </form>
                           </div>
                         </Modal>
                       </>

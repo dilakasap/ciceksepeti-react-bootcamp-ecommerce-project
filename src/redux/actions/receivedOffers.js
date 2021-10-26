@@ -14,7 +14,8 @@ export const getReceivedOffers = () => (dispatch) => {
     .then((response) => {
       dispatch({
         type: GET_RECEIVED_OFFERS_SUCCESS,
-        payload:response.data});
+        payload: response.data,
+      });
     })
     .catch((error) =>
       dispatch({ type: GET_RECEIVED_OFFERS_ERROR, payload: error })

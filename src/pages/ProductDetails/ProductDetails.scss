@@ -70,6 +70,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   color: $text-color1;
+  margin-bottom: 3rem;
 }
 .product-details-buttons {
   display: flex;
@@ -84,7 +85,7 @@
   max-width: 23.5rem;
   height: 4.5rem;
 }
-#cancel-offer-button{
+#cancel-offer-button {
   max-width: 23.5rem;
   height: 4.5rem;
 }
@@ -166,7 +167,7 @@
     border-radius: 0.8rem;
   }
 }
-.given-offers-price{
+.given-offers-price {
   margin-bottom: 3rem;
 }
 .offer-modal-upside {
@@ -208,26 +209,8 @@
   position: relative;
   input {
     margin-right: 0.5rem;
-    // &:checked~div{
-    //   background-color: aqua;
-    //   z-index: 1;
-    // }
   }
 }
-// .highlight{
-//   height: 100%;
-//   padding:1.3rem 1rem;
-//   border: 0.1rem solid $categories-border;
-//   border-radius: 0.8rem;
-//   margin-bottom:1.5rem;
-//   background-color: $white;
-//   position: absolute;
-//   top:0;
-//   right: 0;
-//   bottom:0;
-//   left: 0;
-//   z-index: -1;
-// }
 .offer-modal-price {
   color: $placeholder-color;
   font-size: 1.6rem;
@@ -237,6 +220,7 @@
     width: 100%;
   }
 }
+
 #tl-text {
   position: absolute;
   left: 43rem;
@@ -278,24 +262,28 @@ input::-webkit-inner-spin-button {
 }
 .Toastify__toast--success {
   border-radius: 0.8rem !important;
-  background:$light-green !important;
-  box-shadow:0 0.3rem 1.2rem #1E36482E!important;
-  .Toastify__toast-body{
-    div{
-      color:$green !important;
-      font-size: 1.6rem!important;
+  background: $light-green !important;
+  box-shadow: 0 0.3rem 1.2rem #1e36482e !important;
+  .Toastify__toast-body {
+    div {
+      color: $green !important;
+      font-size: 1.6rem !important;
     }
   }
 }
 
-.Toastify__close-button{
+.Toastify__close-button {
   display: none;
 }
-.product-details-price-mobile{
+.product-details-price-mobile {
   display: none;
 }
-.given-offers-price-mobile{
+.given-offers-price-mobile {
   display: none;
+}
+#price-error {
+  background-color: $light-red;
+  border-color: $red;
 }
 
 @media screen and (max-width: 1535px) {
@@ -343,31 +331,31 @@ input::-webkit-inner-spin-button {
   .product-details-price {
     display: none;
   }
-  .mobile-prices{
+  .mobile-prices {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
     align-items: center;
   }
-  .product-details-price-mobile{
+  .product-details-price-mobile {
     display: initial;
     font-size: 2rem;
     font-weight: 700;
     color: $text-color1;
   }
-  .given-offers-price{
+  .given-offers-price {
     display: none;
   }
-  .given-offers-price-mobile{
+  .given-offers-price-mobile {
     display: initial;
-    width:17rem;
-    padding:0.8rem 1rem;
+    width: 17rem;
+    padding: 0.8rem 1rem;
     background-color: $home-bg;
     border-radius: 0.8rem;
     font-weight: 700;
     margin-right: 1rem;
-    span{
-      color:$small-text;
+    span {
+      color: $small-text;
       font-weight: 400;
       font-size: 1.2rem;
     }
@@ -391,6 +379,10 @@ input::-webkit-inner-spin-button {
   #tl-text {
     left: 30rem;
     top: 36rem;
+  }
+  .bought-product {
+    width: 100%;
+    text-align: center;
   }
 }
 @media screen and (max-width: 375px) {

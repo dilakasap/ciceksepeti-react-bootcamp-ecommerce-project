@@ -11,6 +11,7 @@ function Header() {
       setIsLoggedIn(true);
     }
   }, []);
+  // page directions
   const history = useHistory();
   const goHomePage = () => {
     history.push("/");
@@ -30,15 +31,24 @@ function Header() {
     <header className="header">
       <nav className="navbar">
         <div className="header-logo">
+           {/* click logo for go to homepage */}
           <img alt="ikinciel-logo" src={logo} onClick={goHomePage} />
         </div>
         <div className="user">
           {isLoggedIn ? (
             <>
-              <button className="button-secondary" id="header-product-button" onClick={goUploadProductPage}>
+              <button
+                className="button-secondary"
+                id="header-product-button"
+                onClick={goUploadProductPage}
+              >
                 <img src={plus} alt="pluslogo" /> Ürün Ekle
               </button>
-              <button className="button-secondary" id="header-account-button" onClick={goAccountPage}>
+              <button
+                className="button-secondary"
+                id="header-account-button"
+                onClick={goAccountPage}
+              >
                 <img alt="userlogo" src={user} /> Hesabım
               </button>
             </>

@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { postLogin } from "../../redux/actions/login";
 import { useSelector } from "react-redux";
 import { REQUEST_STATUS } from "../../helpers/Constants";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import errorLogo from "../../images/error-logo.svg";
 
@@ -53,6 +53,7 @@ function Login() {
   }, [errors]);
   return (
     <>
+      {/* login page and validations */}
       <div className="main-container">
         <img alt="loginimage" id="login-image" src={image} />
         <div className="right-side">

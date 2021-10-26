@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Account from "../pages/Account/Account";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -9,11 +9,11 @@ import UploadProduct from "../pages/UploadProduct/UploadProduct";
 
 function Routes() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(()=>{
-    if(localStorage.getItem("AccessToken")){
+  useEffect(() => {
+    if (localStorage.getItem("AccessToken")) {
       setIsLoggedIn(true);
     }
-  },[]);
+  }, []);
   console.log(isLoggedIn);
   return (
     <div>

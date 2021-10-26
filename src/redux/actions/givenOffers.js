@@ -19,5 +19,3 @@ export const getGivenOffers = () => (dispatch) => {
       dispatch({ type: GET_GIVEN_OFFERS_ERROR, payload: error })
     );
 };
-
-

@@ -11,7 +11,7 @@
   height: 100%;
 }
 .header-logo {
-  height:4rem;
+  height: 4rem;
   img {
     height: 4rem;
     width: 12.5rem;
@@ -28,18 +28,18 @@
   font-size: 1.5rem;
   width: 11.5rem;
   height: 4rem;
-  margin-right:1rem;
+  margin-right: 1rem;
 }
 #header-account-button {
   font-size: 1.5rem;
   width: 11.5rem;
   height: 4rem;
 }
-.user{
+.user {
   display: flex;
   position: relative;
 }
-
+//media queries
 @media screen and (max-width: 1535px) {
   .navbar {
     margin: 0 16rem;
@@ -54,31 +54,31 @@
   .navbar {
     margin: 0 4rem;
   }
-  #header-product-button{
+  #header-product-button {
     visibility: hidden;
     width: 1rem;
-    &::after{
-      content:url("../../images/plus.svg");
+    &::after {
+      content: url("../../images/plus.svg");
       visibility: visible;
-  background-color: #f0f8ff;
-  padding:0.8rem 1rem;
-  border-radius: 0.8rem;
-  position: absolute;
-  top:0;
-  right: 12.5rem;
+      background-color: #f0f8ff;
+      padding: 0.8rem 1rem;
+      border-radius: 0.8rem;
+      position: absolute;
+      top: 0;
+      right: 12.5rem;
     }
   }
 }
 @media screen and (max-width: 375px) {
-  .header{
+  .header {
     height: 6rem;
   }
   .navbar {
     margin: 0 1rem;
   }
-  .header-logo{
-    height:3.2rem;
-    img{
+  .header-logo {
+    height: 3.2rem;
+    img {
       width: 10rem;
       height: 3.2rem;
     }

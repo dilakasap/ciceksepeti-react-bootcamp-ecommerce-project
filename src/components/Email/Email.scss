@@ -1,49 +1,50 @@
 @import "../../style/variables.scss";
-.e-mail-wrapper{
-  display:flex;
+//get email information for the account page
+.e-mail-wrapper {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  margin:2rem 22rem 1rem 22rem;
+  margin: 2rem 22rem 1rem 22rem;
   background-color: $white;
-  border-radius:0.8rem;
+  border-radius: 0.8rem;
   font-weight: 700;
   justify-content: space-between;
-  
 }
-.email-left-side{
+.email-left-side {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.account-logo{
+.account-logo {
   display: flex;
   align-items: center;
-  margin-left:2.6rem;
-  margin-right:1rem;
-  padding:1.6rem 0;
+  margin-left: 2.6rem;
+  margin-right: 1rem;
+  padding: 1.6rem 0;
 }
-#logout-button{
-  font-size:1.4rem;
+#logout-button {
+  font-size: 1.4rem;
   width: 7rem;
   margin-right: 0.5rem;
 }
+//media queries
 @media screen and (max-width: 1535px) {
   .e-mail-wrapper {
-    margin:2rem 16rem 1rem 16rem;
+    margin: 2rem 16rem 1rem 16rem;
   }
 }
 @media screen and (max-width: 1200px) {
   .e-mail-wrapper {
-    margin:2rem 10rem 1rem 10rem;
+    margin: 2rem 10rem 1rem 10rem;
   }
 }
 @media screen and (max-width: 900px) {
-  .e-mail-wrapper{
-    margin:2rem 4rem 1rem 4rem;
+  .e-mail-wrapper {
+    margin: 2rem 4rem 1rem 4rem;
   }
 }
 @media screen and (max-width: 375px) {
-    .e-mail-wrapper{
-      margin:2rem 1rem 1rem 1rem;
-    }
+  .e-mail-wrapper {
+    margin: 2rem 1rem 1rem 1rem;
+  }
 }
