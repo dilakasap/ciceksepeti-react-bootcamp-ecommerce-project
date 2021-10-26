@@ -31,6 +31,7 @@ function Header() {
     <header className="header">
       <nav className="navbar">
         <div className="header-logo">
+           {/* click logo for go to homepage */}
           <img alt="ikinciel-logo" src={logo} onClick={goHomePage} />
         </div>
         <div className="user">
