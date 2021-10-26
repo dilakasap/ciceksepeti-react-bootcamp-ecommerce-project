@@ -144,12 +144,12 @@ function ProductDetails() {
       <Header />
       {productDetails.status === REQUEST_STATUS.PENDING && (
         <div class="loading-offer">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
       )}
       {productDetails.status === REQUEST_STATUS.SUCCESS && (
         <div className="product-detail-container">
