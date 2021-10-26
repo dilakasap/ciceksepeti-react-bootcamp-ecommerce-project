@@ -1,4 +1,5 @@
 @import "../../style/variables.scss";
+//grid for the cards
 .product-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -20,7 +21,7 @@
     width: 100%;
     height: 100%;
     border-radius: 0.8rem;
-    max-height:30rem;
+    max-height: 30rem;
     object-fit: cover;
   }
 }
@@ -52,8 +53,9 @@
   font-weight: 700;
   color: $text-color2;
 }
+//loader
 .loading {
-  $colors: #CEE8FF, #81BAEB,#5ea2dd, #4682b4, #325f8b;
+  $colors: #cee8ff, #81baeb, #5ea2dd, #4682b4, #325f8b;
   display: flex;
   justify-content: center;
   margin-top: 10rem;
@@ -98,7 +100,7 @@
     opacity: 0;
   }
 }
-
+//media queries
 @media screen and (max-width: 1535px) {
   .product-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -140,8 +142,8 @@
   .product-price {
     font-size: 1.5rem;
   }
-  .image{
-    img{
+  .image {
+    img {
       max-height: 18.4rem;
     }
   }

@@ -14,7 +14,6 @@ function Offers() {
           <Tab>Teklif Aldıklarım</Tab>
           <Tab>Teklif Verdiklerim</Tab>
         </TabList>
-
         <TabPanel>
           <ReceivedOffers />
         </TabPanel>
