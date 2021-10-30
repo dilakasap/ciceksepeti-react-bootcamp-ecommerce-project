@@ -67,6 +67,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ![image](https://user-images.githubusercontent.com/87365494/138853738-5aefe42d-56ab-4853-b91f-610f8b55c1a9.png)
 ![image](https://user-images.githubusercontent.com/87365494/138854276-84cfdf61-7d7f-4f44-ace6-9fb438b9bb55.png)
 
+<h2>Performance</h2>
+Desktop
+
+<img width="1435" alt="Screen Shot 2021-10-30 at 17 09 50" src="https://user-images.githubusercontent.com/87365494/139536451-8c520eec-95a7-4c25-8ecc-704fa1639feb.png">
+
+Mobile
+
+<img width="1430" alt="Screen Shot 2021-10-30 at 17 07 22" src="https://user-images.githubusercontent.com/87365494/139536481-73fbcdf7-4b42-4dd0-b042-6dbde110a2e1.png">
+
+
 
 
 
